@@ -1,0 +1,141 @@
+package sxc.Student;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class StudentDAOImplementation implements Student {
+
+	public void addStudent(String regno, String name, int courseId) throws Exception {
+
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+
+		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
+				+ ")";
+		System.out.println(sql);
+		stmt.executeUpdate(sql);
+
+		System.out.println("Student Details inserted");
+
+		stmt.close();
+		con.close();
+	}
+
+	public void updateStudentName(String regno, String name) throws Exception {
+		// TODO Auto-generated method stub
+
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
+		int row = stmt.executeUpdate(sql);
+		if (row > 0) {
+			System.out.println("Student Name Updated");
+		}
+		else
+		{
+			throw new Exception("No Student record found");
+		}
+		stmt.close();
+		con.close();
+	}
+
+	private Connection getConnection() throws ClassNotFoundException, SQLException {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
+		return con;
+	}
+
+	public void deleteStudent(String regno) throws Exception {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+
+		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
+		int row = stmt.executeUpdate(sql);
+		if (row > 0) {
+			System.out.println("Student Deleted");
+		}
+		else
+		{
+			throw new Exception("No Student record found");
+		}
+		stmt.close();
+		con.close();
+	}
+
+	public ArrayList<Stud_Class> getAllActiveStudents() throws Exception {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+
+		String sql = "select * from student where stud_active=1";
+		ResultSet rs = stmt.executeQuery(sql);
+
+		ArrayList<Stud_Class> list = new ArrayList<Stud_Class>();
+
+		while (rs.next()) {
+			Stud_Class s = new Stud_Class();
+			s.regno = rs.getString("std_id");
+			s.name = rs.getString("std_name");
+			s.course_id = rs.getInt("course_id");
+			s.stud_active = rs.getInt("stud_active");
+
+			list.add(s);
+		}
+		stmt.close();
+		con.close();
+
+		return list;
+	}
+
+	public ArrayList<Stud_Class> getActiveStudentsByCourse(int course_id) throws Exception {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+
+		String sql = "select * from student where course_id=" + course_id + " and stud_active=1";
+		ResultSet rs = stmt.executeQuery(sql);
+
+		ArrayList<Stud_Class> list = new ArrayList<Stud_Class>();
+
+		while (rs.next()) {
+			Stud_Class s = new Stud_Class();
+			s.regno = rs.getString("std_id");
+			s.name = rs.getString("std_name");
+			s.course_id = rs.getInt("course_id");
+			s.stud_active = rs.getInt("stud_active");
+
+			list.add(s);
+		}
+
+		stmt.close();
+		con.close();
+
+		return list;
+	}
+
+	public int getCourseIdByRegno(String regno) throws Exception {
+
+		Connection con = getConnection();
+		Statement stmt = con.createStatement();
+
+		int course_id = 0;
+
+		String sql = "select course_id from student where std_id='" + regno + "'";
+
+		ResultSet rs = stmt.executeQuery(sql);
+
+		if (rs.next()) {
+			course_id = rs.getInt("course_id");
+		} else {
+			throw new Exception("No Student record found");
+		}
+
+		return course_id;
+	}
+
+}
