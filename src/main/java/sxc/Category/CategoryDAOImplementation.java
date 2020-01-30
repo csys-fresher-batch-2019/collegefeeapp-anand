@@ -1,26 +1,18 @@
 package sxc.Category;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
+import sxc.util.TestConnect;
 
 public class CategoryDAOImplementation implements CategoryInterface {
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-	}
-
 	public void addFeeCategory(String name) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
 		
@@ -36,7 +28,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 	public int getFeeCategoryId(String name) throws Exception {
 		// TODO Auto-generated method stub
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
@@ -55,7 +47,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 
 	public String getFeeCategoryName(int id) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();

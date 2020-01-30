@@ -1,18 +1,17 @@
 package sxc.Department;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import sxc.util.Logger;
+import sxc.util.TestConnect;
 
 public class DeptDAOImplementation implements DeptInterface {
 
 	public void addDepartment(String name) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Logger logger=Logger.getInstance();
 		
 		Statement stmt = con.createStatement();
@@ -25,15 +24,8 @@ public class DeptDAOImplementation implements DeptInterface {
 		con.close();
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-	}
-
 	public int getDepartmentId(String departmentName) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
@@ -55,7 +47,7 @@ public class DeptDAOImplementation implements DeptInterface {
 	}
 
 	public String getDepartmentName(int dept_id) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
@@ -77,9 +69,7 @@ public class DeptDAOImplementation implements DeptInterface {
 	}
 
 	public ArrayList<Department> listAllDepartments() throws Exception {
-		Connection con = getConnection();
-		Logger logger=Logger.getInstance();
-		
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		ArrayList<Department> list = new ArrayList<Department>();

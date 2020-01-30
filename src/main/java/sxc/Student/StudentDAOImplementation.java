@@ -1,19 +1,19 @@
 package sxc.Student;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
+import sxc.util.TestConnect;
 
 public class StudentDAOImplementation implements Student {
 
 	public void addStudent(String regno, String name, int courseId) throws Exception {
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
 		
@@ -31,7 +31,7 @@ public class StudentDAOImplementation implements Student {
 	public void updateStudentName(String regno, String name) throws Exception {
 		// TODO Auto-generated method stub
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
 		
@@ -42,21 +42,15 @@ public class StudentDAOImplementation implements Student {
 		}
 		else
 		{
-			throw new Exception("No Student record found");
+			throw new NotFoundException("No Student record found");
 		}
 		stmt.close();
 		con.close();
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-	}
-
 	public void deleteStudent(String regno) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		Logger logger=Logger.getInstance();
@@ -68,7 +62,7 @@ public class StudentDAOImplementation implements Student {
 		}
 		else
 		{
-			throw new Exception("No Student record found");
+			throw new NotFoundException("No Student record found");
 		}
 		stmt.close();
 		con.close();
@@ -76,7 +70,7 @@ public class StudentDAOImplementation implements Student {
 
 	public ArrayList<Stud_Class> getAllActiveStudents() throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		String sql = "select * from student where stud_active=1";
@@ -101,7 +95,7 @@ public class StudentDAOImplementation implements Student {
 
 	public ArrayList<Stud_Class> getActiveStudentsByCourse(int course_id) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		String sql = "select * from student where course_id=" + course_id + " and stud_active=1";
@@ -127,7 +121,7 @@ public class StudentDAOImplementation implements Student {
 
 	public int getCourseIdByRegno(String regno) throws Exception {
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		int course_id = 0;
@@ -139,7 +133,7 @@ public class StudentDAOImplementation implements Student {
 		if (rs.next()) {
 			course_id = rs.getInt("course_id");
 		} else {
-			throw new Exception("No Student record found");
+			throw new NotFoundException("No Student record found");
 		}
 
 		return course_id;

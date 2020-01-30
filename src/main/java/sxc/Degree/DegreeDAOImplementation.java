@@ -12,7 +12,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 	public void addDegree(String name, int durationInYears) throws Exception {
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
@@ -23,8 +23,6 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		logger.info(sql);
 
-		int rows = stmt.executeUpdate(sql);
-
 		logger.info("Degree Inserted");
 
 		stmt.close();
@@ -32,16 +30,9 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-	}
-
 	public String getDegreeName(int degId) throws Exception {
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		
 		Logger logger=Logger.getInstance();
@@ -70,7 +61,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 	}
 
 	public int getDegreeId(String degName) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
@@ -94,11 +85,11 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 	public ArrayList<Degree> getAllDegree() throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
 		
-		ArrayList<Degree> list = new ArrayList();
+		ArrayList<Degree> list = new ArrayList<Degree>();
 
 		String sql = "select * from degree";
 		logger.info(sql);

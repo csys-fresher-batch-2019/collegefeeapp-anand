@@ -1,19 +1,16 @@
 package sxc.Payment;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import sxc.util.Logger;
-
+import sxc.util.TestConnect;
 import java.sql.*;
 
 public class PaymentDAOImplementation implements PaymentInterface {
 
 	public void addPayment(String studentId, int feeCourseId, int semId, int amount) throws Exception {
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger = Logger.getInstance();
@@ -31,7 +28,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	public List<PaymentDetail> listbysem(int semId) throws Exception {
 		// TODO Auto-generated method stub
 
-		Connection connection = getConnection();
+		Connection connection = TestConnect.getConnection();
 
 		Statement st = connection.createStatement();
 		Logger logger = Logger.getInstance();
@@ -65,16 +62,6 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		return list;
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system",
-				"oracle");
-
-		System.out.println(connection);
-		return connection;
-	}
-
 	public List<PaymentDetail> listbyregno(String regno) throws Exception {
 		// TODO Auto-generated method stub
 		Logger logger = Logger.getInstance();
@@ -82,7 +69,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 				+ regno + "'";
 		logger.info(sql);
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement st = con.createStatement();
 
 		ResultSet rs = st.executeQuery(sql);
@@ -119,12 +106,14 @@ public class PaymentDAOImplementation implements PaymentInterface {
 				+ "";
 		logger.info(sql);
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement st = con.createStatement();
 
 		ResultSet rs = st.executeQuery(sql);
 
-		ArrayList<PaymentDetail> list = new ArrayList<PaymentDetail>();
+		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
+
+		PaymentDetail pd = new PaymentDetail();
 
 		return list;
 	}
@@ -135,12 +124,12 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement st = con.createStatement();
 
 		ResultSet rs = st.executeQuery(sql);
 
-		ArrayList<PaymentDetail> list = new ArrayList<PaymentDetail>();
+		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
 
 		PaymentDetail pd = new PaymentDetail();
 
@@ -154,12 +143,12 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement st = con.createStatement();
 
 		ResultSet rs = st.executeQuery(sql);
 
-		ArrayList<PaymentDetail> list = new ArrayList<PaymentDetail>();
+		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
 
 		PaymentDetail pd = new PaymentDetail();
 

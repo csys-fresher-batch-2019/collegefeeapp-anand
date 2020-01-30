@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
+import sxc.util.TestConnect;
 
 public class CourseDAOImplementation implements CourseInterface {
 
 	public void addCourse(int deptId, int degId) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=new Logger();
@@ -31,15 +32,8 @@ public class CourseDAOImplementation implements CourseInterface {
 
 	}
 
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-	}
-
 	public int getCourseId(int degId, int deptId) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
@@ -60,10 +54,10 @@ public class CourseDAOImplementation implements CourseInterface {
 	}
 
 	public String getCourseName(int courseId) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String degreeName = "";
 		String deptName = "";
 
@@ -98,7 +92,7 @@ public class CourseDAOImplementation implements CourseInterface {
 	}
 
 	public void deleteCourse(int courseId) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=new Logger();
@@ -121,7 +115,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		// TODO Auto-generated method stub
 		ArrayList<Course> list = new ArrayList<Course>();
 
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		String sql = "select * from course";

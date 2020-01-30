@@ -17,8 +17,8 @@ public class TestGetCourseId {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
-Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		DeptDAOImplementation obj1 = new DeptDAOImplementation();
 		DegreeDAOImplementation obj2 = new DegreeDAOImplementation();
 		CourseDAOImplementation obj3 = new CourseDAOImplementation();

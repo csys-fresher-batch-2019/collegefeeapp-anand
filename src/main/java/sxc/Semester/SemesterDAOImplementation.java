@@ -1,17 +1,16 @@
 package sxc.Semester;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import sxc.util.Logger;
+import sxc.util.TestConnect;
 
 public class SemesterDAOImplementation implements SemesterInterface {
 
 	public void addSemester(Semester s) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 		Logger logger=Logger.getInstance();
@@ -29,7 +28,7 @@ public class SemesterDAOImplementation implements SemesterInterface {
 	}
 
 	public int getSemId(int yr, int semType) throws Exception {
-		Connection con = getConnection();
+		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
@@ -49,15 +48,6 @@ public class SemesterDAOImplementation implements SemesterInterface {
 		}
 
 		return semId;
-	}
-
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
-
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
-		return con;
-
 	}
 
 }
