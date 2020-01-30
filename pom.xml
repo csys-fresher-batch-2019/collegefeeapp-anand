@@ -12,8 +12,8 @@
 
   <properties>
    
-    <java.version.source>1.8</java.version.source>
-	<java.version.target>1.8</java.version.target>
+ <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   
