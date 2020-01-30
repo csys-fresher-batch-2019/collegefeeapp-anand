@@ -13,7 +13,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 	public void addDepartment(String name) throws Exception {
 		Connection con = getConnection();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		Statement stmt = con.createStatement();
 		String sql = "insert into department(dept_id,dept_name) values( department_seq.nextval ,'" + name + "')";
@@ -37,7 +37,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		int deptId = 0;
 		String sql1 = "select dept_id from department where dept_name='" + departmentName + "'";
@@ -59,7 +59,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String deptName = "";
 		String sql = "select dept_name from department where dept_id=" + dept_id + "";
 		logger.info(sql);
@@ -78,7 +78,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 	public ArrayList<Department> listAllDepartments() throws Exception {
 		Connection con = getConnection();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		Statement stmt = con.createStatement();
 

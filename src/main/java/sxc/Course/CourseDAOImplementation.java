@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
 
 public class CourseDAOImplementation implements CourseInterface {
@@ -49,7 +50,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		if (rs.next()) {
 			result = rs.getInt("course_id");
 		} else {
-			throw new Exception("Course Does not Exist");
+			throw new NotFoundException("Course Does not Exist");
 		}
 
 		stmt.close();
@@ -88,7 +89,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		con.close();
 
 		if (degreeName.equals("") || deptName.equals("")) {
-			throw new Exception("Course doesnot Exist");
+			throw new NotFoundException("Course doesnot Exist");
 		}
 
 		String courseName = degreeName + " (" + deptName + ")";
@@ -109,7 +110,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		}
 		else
 		{
-			throw new Exception("Course Not Found");
+			throw new NotFoundException("Course Not Found");
 		}
 		stmt.close();
 		con.close();

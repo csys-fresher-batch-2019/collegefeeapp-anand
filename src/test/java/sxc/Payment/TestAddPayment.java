@@ -1,16 +1,14 @@
 package sxc.Payment;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 import sxc.Category.CategoryDAOImplementation;
 import sxc.Course.CourseDAOImplementation;
-import sxc.Degree.DegreeDAOImplementation;
-import sxc.Department.DeptDAOImplementation;
 import sxc.FeeCourse.FeeCourseDAOImplementation;
+import sxc.SXCException.NotFoundException;
 import sxc.Semester.SemesterDAOImplementation;
 import sxc.Student.StudentDAOImplementation;
+import sxc.util.Logger;
 
 public class TestAddPayment 
 {
@@ -19,15 +17,12 @@ public class TestAddPayment
 	{
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
-		
-		
-//		DeptDAOImplementation deptObj=new DeptDAOImplementation();
-//		DegreeDAOImplementation degObj=new DegreeDAOImplementation();
-		CourseDAOImplementation courseObj=new CourseDAOImplementation();
+				
 		CategoryDAOImplementation catObj=new CategoryDAOImplementation();
 		SemesterDAOImplementation semObj=new SemesterDAOImplementation();
 		StudentDAOImplementation stdObj=new StudentDAOImplementation();
 		FeeCourseDAOImplementation feeCourseObj=new FeeCourseDAOImplementation();
+		Logger logger=Logger.getInstance();
 		
 //		String degName=sc.nextLine().toUpperCase();
 //		String deptName=sc.nextLine().toUpperCase();
@@ -41,17 +36,17 @@ public class TestAddPayment
 
 		int courseId=stdObj.getCourseIdByRegno(regno);
 		
-		System.out.println("COURSE ID: "+courseId);
+		logger.info("COURSE ID: "+courseId);
 		
 		String categoryName=sc.nextLine().toUpperCase();
 		int feeCategoryId=catObj.getFeeCategoryId(categoryName);
-		System.out.println("CATEGORY ID: "+feeCategoryId);	
+		logger.info("CATEGORY ID: "+feeCategoryId);	
 		
 		int feeCourseId=feeCourseObj.getCourseFeeId(courseId, feeCategoryId);
-		System.out.println("COURSE FEE ID: "+feeCourseId);
+		logger.info("COURSE FEE ID: "+feeCourseId);
 		
 		int payable=feeCourseObj.getCourseFeeAmount(feeCourseId);
-		System.out.println("PAYABLE AMOUNT: "+payable);		
+		logger.info("PAYABLE AMOUNT: "+payable);		
 		
 		int yr=sc.nextInt();
 		
@@ -67,11 +62,11 @@ public class TestAddPayment
 			semType=0;
 		}
 		else {
-			throw new Exception("INVALID INPUT");
+			throw new NotFoundException("INVALID INPUT");
 		}
 		
 		int semId=semObj.getSemId(yr,semType);
-		System.out.println("SEM ID:"+semId);
+		logger.info("SEM ID:"+semId);
 		
 		PaymentDAOImplementation obj=new PaymentDAOImplementation();
 		obj.addPayment(regno, feeCourseId, semId, payable);

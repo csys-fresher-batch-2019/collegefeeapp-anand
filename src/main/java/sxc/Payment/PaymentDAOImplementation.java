@@ -16,7 +16,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger = new Logger();
+		Logger logger = Logger.getInstance();
 
 		String sql = "insert into payment(payment_id,payment_date,std_id,course_fee_id,sem_id,paid_amount) values(payment_seq.nextval,to_date(SYSDATE,'dd-MM-yyyy'),'"
 				+ studentId + "'," + feeCourseId + "," + semId + "," + amount + ")";
@@ -34,7 +34,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Connection connection = getConnection();
 
 		Statement st = connection.createStatement();
-		Logger logger = new Logger();
+		Logger logger = Logger.getInstance();
 
 		String sql = "select payment_id,payment_date,std_id,course_fee_id,paid_amount from payment where sem_id="
 				+ semId + "";
@@ -77,7 +77,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyregno(String regno) throws Exception {
 		// TODO Auto-generated method stub
-		Logger logger = new Logger();
+		Logger logger = Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment where std_id='"
 				+ regno + "'";
 		logger.info(sql);
@@ -114,7 +114,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyCategoryId(int categoryId, int semId) throws Exception {
 		// TODO Auto-generated method stub
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String sql = "select course_fee_id,sum(paid_amount) from payment group by course_fee_id having sem_id =" + semId
 				+ "";
 		logger.info(sql);
@@ -131,7 +131,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyDeptName(String departmentName, int semId) throws Exception {
 		// TODO Auto-generated method stub
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 
@@ -150,7 +150,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyCourseId(int courseId, int semId) throws Exception {
 		// TODO Auto-generated method stub
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 

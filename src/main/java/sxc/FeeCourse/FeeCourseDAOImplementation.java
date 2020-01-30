@@ -13,7 +13,7 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 	public void addCourseFee(int courseId, int feeCategoryId, int amount) throws Exception {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into course_fee(course_fee_id,course_id,fee_category_id,amount) values(course_fee_seq.nextval,'"
 				+ courseId + "','" + feeCategoryId + "','" + amount + "')";
@@ -33,7 +33,7 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "update course_fee set amount=" + amount + " where course_id=" + courseId + " and fee_category_id="
 				+ feeCategoryId;
@@ -50,7 +50,7 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 	public int getCourseFeeId(int courseId, int feeCategoryId) throws Exception {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		int courseFeeId = 0;
 
 		String sql = "select course_fee_id from course_fee where course_id=" + courseId + " and fee_category_id="

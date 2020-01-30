@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import sxc.Degree.DegreeDAOImplementation;
 import sxc.Department.DeptDAOImplementation;
+import sxc.util.Logger;
 
 public class TestGetCourseId {
 
@@ -16,7 +17,8 @@ public class TestGetCourseId {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
-
+Logger logger=Logger.getInstance();
+		
 		DeptDAOImplementation obj1 = new DeptDAOImplementation();
 		DegreeDAOImplementation obj2 = new DegreeDAOImplementation();
 		CourseDAOImplementation obj3 = new CourseDAOImplementation();
@@ -28,7 +30,7 @@ public class TestGetCourseId {
 		int degId = obj2.getDegreeId(degName);
 
 		int course_id = obj3.getCourseId(degId, deptId);
-		System.out.println(course_id);
+		logger.info(course_id);
 
 	}
 

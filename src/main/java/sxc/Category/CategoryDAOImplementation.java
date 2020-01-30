@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
 
 public class CategoryDAOImplementation implements CategoryInterface {
@@ -21,7 +22,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
 				+ name + "')";
@@ -38,7 +39,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
 		logger.info(sql);
@@ -57,7 +58,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
 		logger.info(sql);
@@ -66,6 +67,10 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		String name = null;
 		if (rs.next()) {
 			name = rs.getString("fee_category_name");
+		}
+		else
+		{
+			throw new NotFoundException("Category doesnot exist");
 		}
 
 		return name;

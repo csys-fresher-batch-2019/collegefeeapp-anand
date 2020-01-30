@@ -15,7 +15,7 @@ public class StudentDAOImplementation implements Student {
 
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
 				+ ")";
@@ -33,7 +33,7 @@ public class StudentDAOImplementation implements Student {
 
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
@@ -59,7 +59,7 @@ public class StudentDAOImplementation implements Student {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);

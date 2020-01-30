@@ -6,6 +6,7 @@ import sxc.Category.CategoryDAOImplementation;
 import sxc.Course.CourseDAOImplementation;
 import sxc.Degree.DegreeDAOImplementation;
 import sxc.Department.DeptDAOImplementation;
+import sxc.util.Logger;
 
 
 public class TestAddCourseFee {
@@ -19,22 +20,23 @@ public class TestAddCourseFee {
 		CategoryDAOImplementation objCategory=new CategoryDAOImplementation();
 		
 		Scanner sc=new Scanner(System.in);
+		Logger logger=Logger.getInstance();
 		
 		String deptName=sc.nextLine().toUpperCase();
 		int deptId=objDept.getDepartmentId(deptName);
-		System.out.println("DEPT ID: "+deptId);
+		logger.info("DEPT ID: "+deptId);
 		
 		String degName=sc.nextLine().toUpperCase();
 		int degId=objDeg.getDegreeId(degName);
-		System.out.println("DEGREE NAME: "+degId);
+		logger.info("DEGREE NAME: "+degId);
 		
 		int courseId=objCourse.getCourseId(degId, deptId);
-		System.out.println("COURSE ID: "+courseId);
+		logger.info("COURSE ID: "+courseId);
 		
 		String categoryName=sc.nextLine().toUpperCase();
 		
 		int categoryId=objCategory.getFeeCategoryId(categoryName);		
-		System.out.println("FEE CATEGORY ID: "+categoryId);
+		logger.info("FEE CATEGORY ID: "+categoryId);
 		
 		int amount=sc.nextInt();
 		

@@ -6,32 +6,34 @@ import java.util.Scanner;
 import sxc.Course.CourseDAOImplementation;
 import sxc.Degree.DegreeDAOImplementation;
 import sxc.Department.DeptDAOImplementation;
+import sxc.util.Logger;
 
 public class TestGetActiveStudentsByCourse {
 
 	public static void main(String[] args) throws Exception {
 		
+		Logger logger=Logger.getInstance();
 		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter Department Name");
+		logger.info("Enter Department Name");
 		String deptName=(sc.nextLine()).toUpperCase();
-		System.out.println("Enter Degree Name");
+		logger.info("Enter Degree Name");
 		String degName=(sc.nextLine()).toUpperCase();
 		
 		DeptDAOImplementation objDept=new DeptDAOImplementation();
 		int deptId=objDept.getDepartmentId(deptName);
-		System.out.println("DEPT ID: "+deptId);
+		logger.info("DEPT ID: "+deptId);
 
 		DegreeDAOImplementation objDegree= new DegreeDAOImplementation();
 		int degId=objDegree.getDegreeId(degName);
-		System.out.println("DEGREE ID: "+degId);
+		logger.info("DEGREE ID: "+degId);
 		
 		CourseDAOImplementation objCourse=new CourseDAOImplementation();
 		int courseId=objCourse.getCourseId(degId, deptId);
-		System.out.println("COURSE ID: "+courseId);
+		logger.info("COURSE ID: "+courseId);
 		
 		StudentDAOImplementation obj=new StudentDAOImplementation();
 		ArrayList<Stud_Class> list=obj.getActiveStudentsByCourse(courseId);
-		System.out.println(list);
+		logger.info(list);
 	}
 	
 }

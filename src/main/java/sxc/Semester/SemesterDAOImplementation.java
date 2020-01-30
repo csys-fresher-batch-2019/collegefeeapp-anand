@@ -14,7 +14,7 @@ public class SemesterDAOImplementation implements SemesterInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval," + s.getsemType()
 				+ "," + s.getaccYear() + ")";
@@ -33,7 +33,7 @@ public class SemesterDAOImplementation implements SemesterInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		String sql = "select sem_id from semester where acc_yr_begin=" + yr + " and sem_type=" + semType + " ";
 
 		logger.info(sql);

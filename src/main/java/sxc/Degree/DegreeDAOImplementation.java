@@ -1,6 +1,8 @@
 package sxc.Degree;
 
 import java.sql.*;
+
+import sxc.SXCException.NotFoundException;
 import sxc.util.*;
 
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger= Logger.getInstance();
 		
-		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name + "','"
-				+ durationInYears + "')";
+		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name + "',"
+				+ durationInYears + ")";
 
 		logger.info(sql);
 
@@ -42,7 +44,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
 		
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String degName = null;
 		ResultSet rs2;
@@ -57,7 +59,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		if (rs2.next()) {
 			degName = rs2.getString("deg_name");
 		} else {
-			throw new Exception("Degree doesnot Exist");
+			throw new NotFoundException("Degree doesnot Exist");
 		}
 
 		stmt.close();
@@ -71,7 +73,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		String sql1 = "select deg_id from degree where deg_name='" + degName + "'";
 		logger.info(sql1);
@@ -81,7 +83,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		if (rs.next()) {
 			degId = rs.getInt("deg_id");
 		} else {
-			throw new Exception("Degree doesnot Exist");
+			throw new NotFoundException("Degree doesnot Exist");
 		}
 
 		stmt.close();
@@ -94,7 +96,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
+		Logger logger=Logger.getInstance();
 		
 		ArrayList<Degree> list = new ArrayList();
 

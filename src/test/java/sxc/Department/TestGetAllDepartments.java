@@ -6,13 +6,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
+import sxc.util.Logger;
+
 public class TestGetAllDepartments {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		Logger logger=Logger.getInstance();
 		DeptDAOImplementation obj=new DeptDAOImplementation();
 		ArrayList<Department> listDept=obj.listAllDepartments();
-		System.out.println(listDept);
+		logger.info(listDept.toString());
 		
 		String fileContent="";
 		
