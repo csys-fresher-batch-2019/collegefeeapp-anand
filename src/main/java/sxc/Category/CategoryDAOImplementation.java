@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import sxc.util.Logger;
+
 public class CategoryDAOImplementation implements CategoryInterface {
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -19,13 +21,14 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
 				+ name + "')";
 		stmt.executeUpdate(sql);
 
-		System.out.println(sql);
-		System.out.println("Category added");
+		logger.info(sql);
+		logger.info("Category added");
 
 	}
 
@@ -35,9 +38,10 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 		int id = 0;
@@ -53,9 +57,10 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 		String name = null;

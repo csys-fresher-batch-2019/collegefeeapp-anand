@@ -2,13 +2,17 @@ package sxc.Degree;
 
 import java.util.ArrayList;
 
+import sxc.util.Logger;
+
 public class TestGetAllDegree {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
+		Logger logger=new Logger();
+		
 		DegreeDAOImplementation obj=new DegreeDAOImplementation();
 		ArrayList<Degree> list=obj.getAllDegree();
-		System.out.println(list);
+		logger.info(list.toString());
 	}
 
 }

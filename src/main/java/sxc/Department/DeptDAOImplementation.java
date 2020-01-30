@@ -7,16 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.util.Logger;
+
 public class DeptDAOImplementation implements DeptInterface {
 
 	public void addDepartment(String name) throws Exception {
 		Connection con = getConnection();
-
+		Logger logger=new Logger();
+		
 		Statement stmt = con.createStatement();
 		String sql = "insert into department(dept_id,dept_name) values( department_seq.nextval ,'" + name + "')";
-		System.out.println(sql);
+		logger.info(sql);
 		int rows = stmt.executeUpdate(sql);
-		System.out.println("NO OF ROWS AFFECTED:" + rows);
+		logger.info("NO OF ROWS AFFECTED:" + rows);
 
 		stmt.close();
 		con.close();
@@ -33,9 +36,12 @@ public class DeptDAOImplementation implements DeptInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
+
+		Logger logger=new Logger();
+		
 		int deptId = 0;
 		String sql1 = "select dept_id from department where dept_name='" + departmentName + "'";
-		System.out.println(sql1);
+		logger.info(sql1);
 		ResultSet rs1 = stmt.executeQuery(sql1);
 		if (rs1.next()) {
 			deptId = rs1.getInt("dept_id");
@@ -53,9 +59,10 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		Statement stmt = con.createStatement();
 
+		Logger logger=new Logger();
 		String deptName = "";
 		String sql = "select dept_name from department where dept_id=" + dept_id + "";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 		if (rs.next()) {
@@ -71,7 +78,8 @@ public class DeptDAOImplementation implements DeptInterface {
 
 	public ArrayList<Department> listAllDepartments() throws Exception {
 		Connection con = getConnection();
-
+		Logger logger=new Logger();
+		
 		Statement stmt = con.createStatement();
 
 		ArrayList<Department> list = new ArrayList<Department>();

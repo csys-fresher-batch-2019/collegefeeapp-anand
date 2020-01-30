@@ -6,17 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import sxc.util.Logger;
+
 public class FeeCourseDAOImplementation implements FeeCourseInterface {
 
 	public void addCourseFee(int courseId, int feeCategoryId, int amount) throws Exception {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "insert into course_fee(course_fee_id,course_id,fee_category_id,amount) values(course_fee_seq.nextval,'"
 				+ courseId + "','" + feeCategoryId + "','" + amount + "')";
 		stmt.executeUpdate(sql);
 
-		System.out.println("Course Fee added successfully");
+		logger.info("Course Fee added successfully");
 	}
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
@@ -30,12 +33,13 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "update course_fee set amount=" + amount + " where course_id=" + courseId + " and fee_category_id="
 				+ feeCategoryId;
 		int rows = stmt.executeUpdate(sql);
 		if (rows > 0) {
-			System.out.println("Course Fee Updated");
+			logger.info("Course Fee Updated");
 		}
 		else
 		{
@@ -46,11 +50,12 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 	public int getCourseFeeId(int courseId, int feeCategoryId) throws Exception {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
+		Logger logger=new Logger();
 		int courseFeeId = 0;
 
 		String sql = "select course_fee_id from course_fee where course_id=" + courseId + " and fee_category_id="
 				+ feeCategoryId + "";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 

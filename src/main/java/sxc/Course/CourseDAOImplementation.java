@@ -7,20 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.util.Logger;
+
 public class CourseDAOImplementation implements CourseInterface {
 
 	public void addCourse(int deptId, int degId) throws Exception {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "insert into course(course_id,dept_id,deg_id) values(course_seq.nextVal," + deptId + "," + degId
 				+ ")";
 
 		stmt.executeUpdate(sql);
 
-		System.out.println(sql);
-		System.out.println("Course Added");
+		logger.info(sql);
+		logger.info("Course Added");
 
 		stmt.close();
 		con.close();
@@ -39,6 +42,7 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		Statement stmt = con.createStatement();
 
+		Logger logger=new Logger();
 		String sql = "select course_id from course where deg_id= " + degId + " and dept_id=" + deptId + "";
 		ResultSet rs = stmt.executeQuery(sql);
 		int result = 0;
@@ -58,6 +62,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
+		Logger logger=new Logger();
 		String degreeName = "";
 		String deptName = "";
 
@@ -72,7 +77,7 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		String sql2 = "select deg_name from degree where deg_id=(select deg_id from course where course_id=" + courseId
 				+ ")";
-		System.out.println(sql2);
+		logger.info(sql2);
 		ResultSet rs2 = stmt.executeQuery(sql2);
 
 		if (rs2.next()) {
@@ -95,11 +100,12 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "update course set course_active=0 where course_id=" + courseId + "";
 		int rows = stmt.executeUpdate(sql);
 		if (rows > 0) {
-			System.out.println("Course Deleted");
+			logger.info("Course Deleted");
 		}
 		else
 		{

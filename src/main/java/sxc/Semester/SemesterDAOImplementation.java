@@ -6,19 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import sxc.util.Logger;
+
 public class SemesterDAOImplementation implements SemesterInterface {
 
 	public void addSemester(Semester s) throws Exception {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval," + s.getsemType()
 				+ "," + s.getaccYear() + ")";
 
 		stmt.executeUpdate(sql);
 
-		System.out.println("Semester Generated");
+		logger.info("Semester Generated");
 
 		stmt.close();
 		con.close();
@@ -30,9 +33,10 @@ public class SemesterDAOImplementation implements SemesterInterface {
 
 		Statement stmt = con.createStatement();
 
+		Logger logger=new Logger();
 		String sql = "select sem_id from semester where acc_yr_begin=" + yr + " and sem_type=" + semType + " ";
 
-		System.out.println(sql);
+		logger.info(sql);
 
 		int semId = 0;
 

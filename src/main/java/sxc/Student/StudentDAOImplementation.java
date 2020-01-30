@@ -7,19 +7,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.util.Logger;
+
 public class StudentDAOImplementation implements Student {
 
 	public void addStudent(String regno, String name, int courseId) throws Exception {
 
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
 				+ ")";
-		System.out.println(sql);
+		logger.info(sql);
 		stmt.executeUpdate(sql);
 
-		System.out.println("Student Details inserted");
+		logger.info("Student Details inserted");
 
 		stmt.close();
 		con.close();
@@ -30,10 +33,12 @@ public class StudentDAOImplementation implements Student {
 
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
+		Logger logger=new Logger();
+		
 		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
-			System.out.println("Student Name Updated");
+			logger.info("Student Name Updated");
 		}
 		else
 		{
@@ -54,10 +59,12 @@ public class StudentDAOImplementation implements Student {
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
 
+		Logger logger=new Logger();
+		
 		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
-			System.out.println("Student Deleted");
+			logger.info("Student Deleted");
 		}
 		else
 		{

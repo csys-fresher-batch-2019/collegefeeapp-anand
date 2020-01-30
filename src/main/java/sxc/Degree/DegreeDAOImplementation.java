@@ -1,6 +1,8 @@
 package sxc.Degree;
 
 import java.sql.*;
+import sxc.util.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,14 +14,16 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		Statement stmt = con.createStatement();
 
+		Logger logger=new Logger();
+		
 		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name + "','"
 				+ durationInYears + "')";
 
-		System.out.println(sql);
+		logger.info(sql);
 
 		int rows = stmt.executeUpdate(sql);
 
-		System.out.println("Degree Inserted");
+		logger.info("Degree Inserted");
 
 		stmt.close();
 		con.close();
@@ -37,6 +41,9 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
+		
+		Logger logger=new Logger();
+		
 		String degName = null;
 		ResultSet rs2;
 
@@ -44,7 +51,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		int deg_id = sc.nextInt();
 
 		String sql2 = "select deg_name from degree where deg_id=" + deg_id + "";
-		System.out.println(sql2);
+		logger.info(sql2);
 		rs2 = stmt.executeQuery(sql2);
 
 		if (rs2.next()) {
@@ -64,9 +71,10 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
-
+		Logger logger=new Logger();
+		
 		String sql1 = "select deg_id from degree where deg_name='" + degName + "'";
-		System.out.println(sql1);
+		logger.info(sql1);
 
 		int degId = 0;
 		ResultSet rs = stmt.executeQuery(sql1);
@@ -86,10 +94,12 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		Statement stmt = con.createStatement();
+		Logger logger=new Logger();
+		
 		ArrayList<Degree> list = new ArrayList();
 
 		String sql = "select * from degree";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next()) {

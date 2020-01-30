@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.List;
+
+import sxc.util.Logger;
+
 import java.sql.*;
 
 public class PaymentDAOImplementation implements PaymentInterface {
@@ -13,14 +16,15 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Connection con = getConnection();
 
 		Statement stmt = con.createStatement();
+		Logger logger = new Logger();
 
 		String sql = "insert into payment(payment_id,payment_date,std_id,course_fee_id,sem_id,paid_amount) values(payment_seq.nextval,to_date(SYSDATE,'dd-MM-yyyy'),'"
 				+ studentId + "'," + feeCourseId + "," + semId + "," + amount + ")";
 
-		System.out.println(sql);
+		logger.info(sql);
 		stmt.executeUpdate(sql);
 
-		System.out.println("Payment Inserted");
+		logger.info("Payment Inserted");
 
 	}
 
@@ -30,10 +34,11 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Connection connection = getConnection();
 
 		Statement st = connection.createStatement();
+		Logger logger = new Logger();
 
 		String sql = "select payment_id,payment_date,std_id,course_fee_id,paid_amount from payment where sem_id="
 				+ semId + "";
-		System.out.println(sql);
+		logger.info(sql);
 
 		ResultSet rs = st.executeQuery(sql);
 
@@ -45,11 +50,6 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			String regno = rs.getString("std_id");
 			int feeCategoryId = rs.getInt("course_fee_id");
 			int amount = rs.getInt("paid_amount");
-			System.out.println(id);
-			System.out.println(date);
-			System.out.println(regno);
-			System.out.println(feeCategoryId);
-			System.out.println(amount);
 
 			PaymentDetail pd = new PaymentDetail();
 			pd.semId = semId;
@@ -68,7 +68,8 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system",
+				"oracle");
 
 		System.out.println(connection);
 		return connection;
@@ -76,9 +77,10 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyregno(String regno) throws Exception {
 		// TODO Auto-generated method stub
+		Logger logger = new Logger();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment where std_id='"
 				+ regno + "'";
-		System.out.println(sql);
+		logger.info(sql);
 
 		Connection con = getConnection();
 		Statement st = con.createStatement();
@@ -94,12 +96,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			int feeCategoryId = rs.getInt("course_fee_id");
 			int amount = rs.getInt("paid_amount");
 			int semId = rs.getInt("sem_id");
-			System.out.println(id);
-			System.out.println(date);
-			System.out.println(regno);
-			System.out.println(feeCategoryId);
-			System.out.println(amount);
-
+			
 			pd.id = id;
 			pd.semId = semId;
 			pd.amount = amount;
@@ -117,9 +114,10 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyCategoryId(int categoryId, int semId) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "select course_fee_id,sum(paid_amount) from payment group by course_fee_id having sem_id ="
-				+ semId + "";
-		System.out.println(sql);
+		Logger logger=new Logger();
+		String sql = "select course_fee_id,sum(paid_amount) from payment group by course_fee_id having sem_id =" + semId
+				+ "";
+		logger.info(sql);
 
 		Connection con = getConnection();
 		Statement st = con.createStatement();
@@ -133,8 +131,9 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyDeptName(String departmentName, int semId) throws Exception {
 		// TODO Auto-generated method stub
+		Logger logger=new Logger();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
-		System.out.println(sql);
+		logger.info(sql);
 
 		Connection con = getConnection();
 		Statement st = con.createStatement();
@@ -151,8 +150,9 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 	public List<PaymentDetail> listbyCourseId(int courseId, int semId) throws Exception {
 		// TODO Auto-generated method stub
+		Logger logger=new Logger();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
-		System.out.println(sql);
+		logger.info(sql);
 
 		Connection con = getConnection();
 		Statement st = con.createStatement();
