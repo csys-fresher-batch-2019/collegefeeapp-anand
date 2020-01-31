@@ -1,8 +1,5 @@
 package sxc.Category;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import sxc.util.Logger;
@@ -16,7 +13,7 @@ public class TestGetCategoryId {
 		String name = sc.nextLine().toUpperCase();
 		Logger logger = Logger.getInstance();
 
-		CategoryDAOImplementation obj = new CategoryDAOImplementation();
+		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
 		int id = obj.getFeeCategoryId(name);
 		logger.info("Category ID: " + id);
 

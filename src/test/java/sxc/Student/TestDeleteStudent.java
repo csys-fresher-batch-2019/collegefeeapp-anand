@@ -10,7 +10,7 @@ public class TestDeleteStudent {
 		Scanner sc=new Scanner(System.in);
 		String regno =sc.next().toUpperCase();
 		
-		StudentDAOImplementation obj =new StudentDAOImplementation();
+		StudentDAOImplementation obj =StudentDAOImplementation.getInstance();
 		obj.deleteStudent(regno);
 	}
 

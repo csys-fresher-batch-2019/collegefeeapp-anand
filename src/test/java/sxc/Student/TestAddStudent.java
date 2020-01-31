@@ -13,7 +13,7 @@ public class TestAddStudent {
 		String name = (sc.nextLine()).toUpperCase();
 		int courseId=sc.nextInt();
 		
-		StudentDAOImplementation obj = new StudentDAOImplementation();
+		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
 		obj.addStudent(regno,name,courseId);
 	}
 

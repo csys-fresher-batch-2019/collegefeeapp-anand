@@ -7,7 +7,7 @@ public class TestUpdateStudent {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		StudentDAOImplementation obj=new StudentDAOImplementation();
+		StudentDAOImplementation obj=StudentDAOImplementation.getInstance();
 		
 		Scanner sc=new Scanner(System.in);
 		

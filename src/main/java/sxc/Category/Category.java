@@ -1,9 +1,6 @@
-package sxc.Degree;
+package sxc.Category;
 
-public class Degree {
-
-	private int id;
-	private String name;
+public class Category {
 
 	public int getId() {
 		return id;
@@ -21,8 +18,7 @@ public class Degree {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Degree [id=" + id + ", name=" + name + "]";
-	}
+	private int id;
+	private String name;
+
 }

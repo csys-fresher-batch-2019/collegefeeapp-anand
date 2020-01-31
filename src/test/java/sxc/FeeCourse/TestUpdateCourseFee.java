@@ -19,11 +19,11 @@ public class TestUpdateCourseFee {
 		String deptName=sc.nextLine().toUpperCase();
 		String degName=sc.nextLine().toUpperCase();
 		
-		DeptDAOImplementation deptObj= new DeptDAOImplementation();
-		DegreeDAOImplementation degObj =new DegreeDAOImplementation();
-		CourseDAOImplementation courseObj =new CourseDAOImplementation();
-		CategoryDAOImplementation catObj=new CategoryDAOImplementation();
-		FeeCourseDAOImplementation feeCourseObj=new FeeCourseDAOImplementation();
+		DeptDAOImplementation deptObj= DeptDAOImplementation.getInstance();
+		DegreeDAOImplementation degObj = DegreeDAOImplementation.getInstance();
+		CourseDAOImplementation courseObj =CourseDAOImplementation.getInstance();
+		CategoryDAOImplementation catObj=CategoryDAOImplementation.getInstance();
+		FeeCourseDAOImplementation feeCourseObj=FeeCourseDAOImplementation.getInstance();
 		
 		int deptId=deptObj.getDepartmentId(deptName);
 		int degId=degObj.getDegreeId(degName);

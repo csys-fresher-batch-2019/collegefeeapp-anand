@@ -19,19 +19,19 @@ public class TestGetActiveStudentsByCourse {
 		logger.info("Enter Degree Name");
 		String degName=(sc.nextLine()).toUpperCase();
 		
-		DeptDAOImplementation objDept=new DeptDAOImplementation();
+		DeptDAOImplementation objDept=DeptDAOImplementation.getInstance();
 		int deptId=objDept.getDepartmentId(deptName);
 		logger.info("DEPT ID: "+deptId);
 
-		DegreeDAOImplementation objDegree= new DegreeDAOImplementation();
+		DegreeDAOImplementation objDegree=  DegreeDAOImplementation.getInstance();
 		int degId=objDegree.getDegreeId(degName);
 		logger.info("DEGREE ID: "+degId);
 		
-		CourseDAOImplementation objCourse=new CourseDAOImplementation();
+		CourseDAOImplementation objCourse= CourseDAOImplementation.getInstance();
 		int courseId=objCourse.getCourseId(degId, deptId);
 		logger.info("COURSE ID: "+courseId);
 		
-		StudentDAOImplementation obj=new StudentDAOImplementation();
+		StudentDAOImplementation obj=StudentDAOImplementation.getInstance();
 		ArrayList<Stud_Class> list=obj.getActiveStudentsByCourse(courseId);
 		logger.info(list);
 	}

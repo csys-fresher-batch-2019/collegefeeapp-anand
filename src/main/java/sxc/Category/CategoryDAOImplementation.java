@@ -10,6 +10,12 @@ import sxc.util.TestConnect;
 
 public class CategoryDAOImplementation implements CategoryInterface {
 
+	public static CategoryDAOImplementation getInstance()
+	{
+		CategoryDAOImplementation obj= new CategoryDAOImplementation();
+		return obj;
+	}
+	
 	public void addFeeCategory(String name) throws Exception {
 		// TODO Auto-generated method stub
 		Connection con = TestConnect.getConnection();

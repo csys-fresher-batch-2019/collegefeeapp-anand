@@ -13,12 +13,18 @@ import sxc.util.TestConnect;
 
 public class CourseDAOImplementation implements CourseInterface {
 
+	public static CourseDAOImplementation getInstance()
+	{
+		CourseDAOImplementation obj=new CourseDAOImplementation();
+		return obj;
+	}
+	
 	public void addCourse(int deptId, int degId) throws Exception {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
-		
+		Logger logger = new Logger();
+
 		String sql = "insert into course(course_id,dept_id,deg_id) values(course_seq.nextVal," + deptId + "," + degId
 				+ ")";
 
@@ -37,7 +43,7 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=new Logger();
+		Logger logger = new Logger();
 		String sql = "select course_id from course where deg_id= " + degId + " and dept_id=" + deptId + "";
 		ResultSet rs = stmt.executeQuery(sql);
 		int result = 0;
@@ -57,7 +63,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String degreeName = "";
 		String deptName = "";
 
@@ -95,15 +101,13 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=new Logger();
-		
+		Logger logger = new Logger();
+
 		String sql = "update course set course_active=0 where course_id=" + courseId + "";
 		int rows = stmt.executeUpdate(sql);
 		if (rows > 0) {
 			logger.info("Course Deleted");
-		}
-		else
-		{
+		} else {
 			throw new NotFoundException("Course Not Found");
 		}
 		stmt.close();
@@ -123,10 +127,10 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		while (rs.next()) {
 			Course c = new Course();
-			c.courseId = rs.getInt("course_id");
-			c.degreeId = rs.getInt("deg_id");
-			c.deptId = rs.getInt("dept_id");
-			c.status = rs.getInt("course_active");
+			c.setCourseId(rs.getInt("course_id")) ;
+			c.setDegreeId(rs.getInt("deg_id")) ;
+			c.setDegreeId(rs.getInt("dept_id"));
+			c.setStatus(rs.getInt("course_active"));
 
 			list.add(c);
 		}

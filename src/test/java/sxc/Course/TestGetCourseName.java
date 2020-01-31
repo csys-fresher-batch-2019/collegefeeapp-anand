@@ -13,7 +13,7 @@ public class TestGetCourseName {
 		Scanner sc=new Scanner(System.in);
 		int courseId=sc.nextInt();
 		
-		CourseDAOImplementation obj=new CourseDAOImplementation();
+		CourseDAOImplementation obj=CourseDAOImplementation.getInstance();
 		String courseName=	obj.getCourseName(courseId);
 		logger.info(courseName);
 	}

@@ -8,7 +8,7 @@ public class TestGetAllCourse {
 	public static void main(String[] args) throws Exception {
 
 		Logger logger=Logger.getInstance();
-		CourseDAOImplementation obj = new CourseDAOImplementation();
+		CourseDAOImplementation obj = CourseDAOImplementation.getInstance();
 		ArrayList<Course> list = obj.getAllCourse();
 		logger.info(list.toString());
 	}

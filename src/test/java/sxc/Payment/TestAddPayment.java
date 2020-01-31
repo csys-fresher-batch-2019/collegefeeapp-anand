@@ -5,6 +5,7 @@ import java.util.Scanner;
 import sxc.Category.CategoryDAOImplementation;
 import sxc.Course.CourseDAOImplementation;
 import sxc.FeeCourse.FeeCourseDAOImplementation;
+import sxc.SXCException.InvalidInputException;
 import sxc.SXCException.NotFoundException;
 import sxc.Semester.SemesterDAOImplementation;
 import sxc.Student.StudentDAOImplementation;
@@ -18,10 +19,10 @@ public class TestAddPayment
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 				
-		CategoryDAOImplementation catObj=new CategoryDAOImplementation();
-		SemesterDAOImplementation semObj=new SemesterDAOImplementation();
-		StudentDAOImplementation stdObj=new StudentDAOImplementation();
-		FeeCourseDAOImplementation feeCourseObj=new FeeCourseDAOImplementation();
+		CategoryDAOImplementation catObj= CategoryDAOImplementation.getInstance();
+		SemesterDAOImplementation semObj= SemesterDAOImplementation.getInstance();
+		StudentDAOImplementation stdObj= StudentDAOImplementation.getInstance();
+		FeeCourseDAOImplementation feeCourseObj=FeeCourseDAOImplementation.getInstance();
 		Logger logger=Logger.getInstance();
 		
 //		String degName=sc.nextLine().toUpperCase();
@@ -62,14 +63,22 @@ public class TestAddPayment
 			semType=0;
 		}
 		else {
-			throw new NotFoundException("INVALID INPUT");
+			throw new InvalidInputException("INVALID INPUT");
 		}
 		
 		int semId=semObj.getSemId(yr,semType);
 		logger.info("SEM ID:"+semId);
 		
-		PaymentDAOImplementation obj=new PaymentDAOImplementation();
-		obj.addPayment(regno, feeCourseId, semId, payable);
+		PaymentDAOImplementation obj= PaymentDAOImplementation.getInstance();
+	
+		PaymentDetail p=new PaymentDetail();
+		
+		p.setRegno(regno);
+		p.setFeeCourseId(feeCourseId);
+		p.setSemId(semId);
+		p.setAmount(payable);
+		
+		obj.addPayment(p);
 		
 	}
 

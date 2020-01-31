@@ -14,14 +14,14 @@ public class TestGetAllDepartments {
 		// TODO Auto-generated method stub
 		
 		Logger logger=Logger.getInstance();
-		DeptDAOImplementation obj=new DeptDAOImplementation();
+		DeptDAOImplementation obj=DeptDAOImplementation.getInstance();
 		ArrayList<Department> listDept=obj.listAllDepartments();
 		logger.info(listDept.toString());
 		
 		String fileContent="";
 		
 		for (Department department : listDept) {
-			String line="\n DEPT NAME: "+department.deptName+"\n DEPT ID: "+department.deptId;
+			String line="\n DEPT NAME: "+department.getDeptName()+"\n DEPT ID: "+department.getDeptId();
 			fileContent=fileContent+line;
 		}
 		

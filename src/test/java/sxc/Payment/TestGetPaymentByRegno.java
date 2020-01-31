@@ -10,15 +10,15 @@ public class TestGetPaymentByRegno {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Scanner sc=new Scanner(System.in);
-		
-		Logger logger=Logger.getInstance();
-		
-		String regno=sc.nextLine().toUpperCase();
-		
-		PaymentDAOImplementation obj=new PaymentDAOImplementation();
-		List<PaymentDetail> list=new ArrayList<PaymentDetail>();
-		list=obj.listbyregno(regno);
+		Scanner sc = new Scanner(System.in);
+
+		Logger logger = Logger.getInstance();
+
+		String regno = sc.nextLine().toUpperCase();
+
+		PaymentDAOImplementation obj = PaymentDAOImplementation.getInstance();
+		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
+		list = obj.listbyregno(regno);
 		logger.info(list.toString());
 	}
 

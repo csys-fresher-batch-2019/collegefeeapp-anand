@@ -1,18 +1,56 @@
 package sxc.Payment;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class PaymentDetail {
 
-	public int id;
-	public LocalDate date;
-	public String regno;
-	public int feeCategoryId;
-	public int semId;
-	public int amount;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date2) {
+		this.date = date2;
+	}
+	public String getRegno() {
+		return regno;
+	}
+	public void setRegno(String regno) {
+		this.regno = regno;
+	}
+	public int getFeeCourseId() {
+		return feeCourseId;
+	}
+	public void setFeeCourseId(int feeCourseId) {
+		this.feeCourseId = feeCourseId;
+	}
+	public int getSemId() {
+		return semId;
+	}
+	public void setSemId(int semId) {
+		this.semId = semId;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	private int id;
+	private Date date;
+	private String regno;
+	private int feeCourseId;
+	private int semId;
+	private int amount;
+	
 	@Override
 	public String toString() {
-		return "PaymentDetail [id=" + id + ", date=" + date + ", regno=" + regno + ", feeCategoryId=" + feeCategoryId
+		return "PaymentDetail [id=" + id + ", date=" + date + ", regno=" + regno + ", feeCourseId=" + feeCourseId
 				+ ", semId=" + semId + ", amount=" + amount + "]";
 	}
 	

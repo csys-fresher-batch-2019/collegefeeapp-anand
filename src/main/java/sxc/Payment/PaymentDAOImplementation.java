@@ -8,7 +8,13 @@ import java.sql.*;
 
 public class PaymentDAOImplementation implements PaymentInterface {
 
-	public void addPayment(String studentId, int feeCourseId, int semId, int amount) throws Exception {
+	public static PaymentDAOImplementation getInstance()
+	{
+		PaymentDAOImplementation obj=new PaymentDAOImplementation();
+		return obj;
+	}
+	
+	public void addPayment(PaymentDetail p) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 
@@ -16,7 +22,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Logger logger = Logger.getInstance();
 
 		String sql = "insert into payment(payment_id,payment_date,std_id,course_fee_id,sem_id,paid_amount) values(payment_seq.nextval,to_date(SYSDATE,'dd-MM-yyyy'),'"
-				+ studentId + "'," + feeCourseId + "," + semId + "," + amount + ")";
+				+ p.getRegno()+ "'," + p.getFeeCourseId() + "," + p.getSemId() + "," + p.getAmount() + ")";
 
 		logger.info(sql);
 		stmt.executeUpdate(sql);
@@ -45,16 +51,17 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			int id = rs.getInt("payment_id");
 			Date date = rs.getDate("payment_date");
 			String regno = rs.getString("std_id");
-			int feeCategoryId = rs.getInt("course_fee_id");
+			int feeCourseId = rs.getInt("course_fee_id");
 			int amount = rs.getInt("paid_amount");
 
 			PaymentDetail pd = new PaymentDetail();
-			pd.semId = semId;
-			pd.amount = amount;
-			pd.date = date.toLocalDate();
-			pd.feeCategoryId = feeCategoryId;
-			pd.regno = regno;
-			pd.id = id;
+			pd.setId(id);
+			pd.setAmount(amount);
+			//LocalDate date2=date.valueOf(date);
+			pd.setDate(date);
+			pd.setFeeCourseId(feeCourseId);
+			pd.setRegno(regno);
+			pd.setSemId(semId);
 
 			list.add(pd);
 
@@ -80,17 +87,17 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		while (rs.next()) {
 			int id = rs.getInt("payment_id");
 			Date date = rs.getDate("payment_date");
-			int feeCategoryId = rs.getInt("course_fee_id");
+			int feeCourseId = rs.getInt("course_fee_id");
 			int amount = rs.getInt("paid_amount");
 			int semId = rs.getInt("sem_id");
 			
-			pd.id = id;
-			pd.semId = semId;
-			pd.amount = amount;
-			pd.date = date.toLocalDate();
-			pd.feeCategoryId = feeCategoryId;
-			pd.regno = regno;
-			pd.id = id;
+			pd.setId(id);
+			pd.setSemId(semId);
+			pd.setAmount(amount);
+			pd.setDate(date);
+			pd.setFeeCourseId(feeCourseId);
+			pd.setRegno(regno);
+			pd.setId(id);
 
 			list.add(pd);
 

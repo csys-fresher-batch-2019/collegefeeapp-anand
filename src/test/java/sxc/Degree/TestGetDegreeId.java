@@ -9,7 +9,7 @@ public class TestGetDegreeId {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Logger logger=Logger.getInstance();
-		DegreeDAOImplementation obj=new DegreeDAOImplementation();
+		DegreeDAOImplementation obj=DegreeDAOImplementation.getInstance();
 		Scanner sc= new Scanner(System.in);
 		String degName=(sc.next()).toUpperCase();
 		int degId=obj.getDegreeId(degName);
@@ -17,3 +17,4 @@ public class TestGetDegreeId {
 	}
 
 }
+

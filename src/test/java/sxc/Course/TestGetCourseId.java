@@ -19,9 +19,9 @@ public class TestGetCourseId {
 		Scanner sc = new Scanner(System.in);
 		Logger logger = Logger.getInstance();
 
-		DeptDAOImplementation obj1 = new DeptDAOImplementation();
-		DegreeDAOImplementation obj2 = new DegreeDAOImplementation();
-		CourseDAOImplementation obj3 = new CourseDAOImplementation();
+		DeptDAOImplementation obj1 =  DeptDAOImplementation.getInstance();
+		DegreeDAOImplementation obj2 =  DegreeDAOImplementation.getInstance();
+		CourseDAOImplementation obj3 = CourseDAOImplementation.getInstance();
 
 		String deptName = sc.next();
 		String degName = sc.next();

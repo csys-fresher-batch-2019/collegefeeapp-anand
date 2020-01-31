@@ -8,7 +8,7 @@ public class TestGetSemesterId {
 		// TODO Auto-generated method stub
 
 		Logger logger = Logger.getInstance();
-		SemesterDAOImplementation obj = new SemesterDAOImplementation();
+		SemesterDAOImplementation obj = SemesterDAOImplementation.getInstance();
 		int yr = 2018;
 		int semType = 0;
 		int semId = obj.getSemId(yr, semType);

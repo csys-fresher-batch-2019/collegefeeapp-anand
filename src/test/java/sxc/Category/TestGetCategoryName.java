@@ -12,7 +12,7 @@ public class TestGetCategoryName {
 		Logger logger=Logger.getInstance();
 		int id = sc.nextInt();
 
-		CategoryDAOImplementation obj = new CategoryDAOImplementation();
+		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
 		String name = obj.getFeeCategoryName(id);
 		logger.info("Category Name: " + name);
 

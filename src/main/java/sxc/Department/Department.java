@@ -1,8 +1,8 @@
 package sxc.Department;
 
 public class Department {
-	int deptId;
-	String deptName;
+	private int deptId;
+	private String deptName;
 	
 	public int getDeptId() {
 		return deptId;
@@ -16,6 +16,7 @@ public class Department {
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
+	
 	@Override
 	public String toString() {
 		return "Department [deptId=" + deptId + ", deptName=" + deptName + "]";

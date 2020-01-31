@@ -1,7 +1,8 @@
 package sxc.Student;
 
 public class Stud_Class {
-		public String getName() {
+
+	public String getName() {
 		return name;
 	}
 
@@ -33,14 +34,14 @@ public class Stud_Class {
 		this.course_id = course_id;
 	}
 
-		String name;
-		String regno;
-		int stud_active;
-		int course_id;
-		
-		@Override
-		public String toString() {
-			return "Stud_Class [name=" + name + ", regno=" + regno + ", stud_active=" + stud_active + ", course_id="
-					+ course_id + "]";
-		}
+	private String name;
+	private String regno;
+	private int stud_active;
+	private int course_id;
+
+	@Override
+	public String toString() {
+		return "Stud_Class [name=" + name + ", regno=" + regno + ", stud_active=" + stud_active + ", course_id="
+				+ course_id + "]";
+	}
 }

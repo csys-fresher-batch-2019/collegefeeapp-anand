@@ -9,6 +9,13 @@ import sxc.util.TestConnect;
 
 public class SemesterDAOImplementation implements SemesterInterface {
 
+	public static SemesterDAOImplementation getInstance()
+	{
+		SemesterDAOImplementation obj= new SemesterDAOImplementation();
+		return obj;
+	}
+	
+	
 	public void addSemester(Semester s) throws Exception {
 		Connection con = TestConnect.getConnection();
 

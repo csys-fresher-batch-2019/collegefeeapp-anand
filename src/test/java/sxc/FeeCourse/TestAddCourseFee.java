@@ -14,10 +14,10 @@ public class TestAddCourseFee {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		DeptDAOImplementation objDept=new DeptDAOImplementation();
-		DegreeDAOImplementation objDeg=new DegreeDAOImplementation();
-		CourseDAOImplementation objCourse=new CourseDAOImplementation();
-		CategoryDAOImplementation objCategory=new CategoryDAOImplementation();
+		DeptDAOImplementation objDept=DeptDAOImplementation.getInstance();
+		DegreeDAOImplementation objDeg= DegreeDAOImplementation.getInstance();
+		CourseDAOImplementation objCourse=CourseDAOImplementation.getInstance();
+		CategoryDAOImplementation objCategory=CategoryDAOImplementation.getInstance();
 		
 		Scanner sc=new Scanner(System.in);
 		Logger logger=Logger.getInstance();
@@ -40,7 +40,7 @@ public class TestAddCourseFee {
 		
 		int amount=sc.nextInt();
 		
-		FeeCourseDAOImplementation obj = new FeeCourseDAOImplementation();
+		FeeCourseDAOImplementation obj = FeeCourseDAOImplementation.getInstance();
 		
 		obj.addCourseFee( courseId, categoryId, amount);
 

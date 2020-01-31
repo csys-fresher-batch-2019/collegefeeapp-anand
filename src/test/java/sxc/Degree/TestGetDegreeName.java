@@ -10,7 +10,7 @@ public class TestGetDegreeName {
 		// TODO Auto-generated method stub
 		Logger logger=Logger.getInstance();
 		
-		DegreeDAOImplementation obj = new DegreeDAOImplementation();
+		DegreeDAOImplementation obj = DegreeDAOImplementation.getInstance();
 		Scanner sc= new Scanner(System.in);
 		int degId=sc.nextInt();
 		String degName=obj.getDegreeName(degId);

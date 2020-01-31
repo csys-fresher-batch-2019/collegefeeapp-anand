@@ -5,15 +5,21 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
 
 public class DeptDAOImplementation implements DeptInterface {
 
+	public static DeptDAOImplementation getInstance() {
+		DeptDAOImplementation obj = new DeptDAOImplementation();
+		return obj;
+	}
+
 	public void addDepartment(String name) throws Exception {
 		Connection con = TestConnect.getConnection();
-		Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		Statement stmt = con.createStatement();
 		String sql = "insert into department(dept_id,dept_name) values( department_seq.nextval ,'" + name + "')";
 		logger.info(sql);
@@ -29,8 +35,8 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		int deptId = 0;
 		String sql1 = "select dept_id from department where dept_name='" + departmentName + "'";
 		logger.info(sql1);
@@ -38,7 +44,7 @@ public class DeptDAOImplementation implements DeptInterface {
 		if (rs1.next()) {
 			deptId = rs1.getInt("dept_id");
 		} else {
-			throw new Exception("Department does not Exist");
+			throw new NotFoundException("Department does not Exist");
 		}
 		stmt.close();
 		con.close();
@@ -51,7 +57,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String deptName = "";
 		String sql = "select dept_name from department where dept_id=" + dept_id + "";
 		logger.info(sql);
@@ -60,7 +66,7 @@ public class DeptDAOImplementation implements DeptInterface {
 		if (rs.next()) {
 			deptName = rs.getString("dept_name");
 		} else {
-			throw new Exception("Department does not exist");
+			throw new NotFoundException("Department does not exist");
 		}
 		stmt.close();
 		con.close();
@@ -81,8 +87,8 @@ public class DeptDAOImplementation implements DeptInterface {
 			String name = rs.getString("dept_name");
 
 			Department d = new Department();
-			d.deptId = id;
-			d.deptName = name;
+			d.setDeptId(id);
+			d.setDeptName(name);
 
 			list.add(d);
 		}

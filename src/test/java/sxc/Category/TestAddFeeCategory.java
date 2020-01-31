@@ -10,7 +10,7 @@ public class TestAddFeeCategory {
 		Scanner sc = new Scanner(System.in);
 		String name = sc.nextLine().toUpperCase();
 
-		CategoryDAOImplementation obj = new CategoryDAOImplementation();
+		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
 		obj.addFeeCategory(name);
 
 	}

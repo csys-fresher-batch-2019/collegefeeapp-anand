@@ -7,7 +7,7 @@ public class TestAddSemester {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		SemesterDAOImplementation obj = new SemesterDAOImplementation();
+		SemesterDAOImplementation obj = SemesterDAOImplementation.getInstance();
 
 		Semester s = new Semester();
 		s.setaccYear(2007);

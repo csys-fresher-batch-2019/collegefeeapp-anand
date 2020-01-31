@@ -10,7 +10,7 @@ public class TestGetAllActiveStudents {
 
 		Logger logger = Logger.getInstance();
 
-		StudentDAOImplementation obj = new StudentDAOImplementation();
+		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
 		ArrayList<Stud_Class> list = obj.getAllActiveStudents();
 		logger.info(list);
 	}

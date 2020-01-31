@@ -9,6 +9,12 @@ import sxc.util.TestConnect;
 
 public class FeeCourseDAOImplementation implements FeeCourseInterface {
 
+	public static FeeCourseDAOImplementation getInstance()
+	{
+		FeeCourseDAOImplementation obj=new FeeCourseDAOImplementation();
+		return obj;
+	}
+	
 	public void addCourseFee(int courseId, int feeCategoryId, int amount) throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();

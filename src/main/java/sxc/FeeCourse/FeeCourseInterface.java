@@ -7,4 +7,5 @@ public interface FeeCourseInterface {
 	void updateCourseFee(int courseId,int feeCategoryId,int amount) throws Exception;
 	
 	int getCourseFeeId(int courseId,int feeCategoryId) throws Exception;
+
 }

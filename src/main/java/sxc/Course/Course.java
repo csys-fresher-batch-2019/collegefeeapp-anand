@@ -34,15 +34,15 @@ public class Course {
 		this.status = status;
 	}
 
-	int courseId;
-	int deptId;
-	int degreeId;
-	int status;
+	private int courseId;
+	private int deptId;
+	private int degreeId;
+	private int status;
 
 	@Override
 	public String toString() {
 		return "Course [courseId=" + courseId + ", deptId=" + deptId + ", degreeId=" + degreeId + ", status=" + status
 				+ "]";
 	}
-	
+
 }

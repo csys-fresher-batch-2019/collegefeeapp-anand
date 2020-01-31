@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 public class DegreeDAOImplementation implements DegreeInterface {
 
+	public static DegreeDAOImplementation getInstance()
+	{
+		DegreeDAOImplementation obj=new DegreeDAOImplementation();
+		return obj;
+	}
+	
 	public void addDegree(String name, int durationInYears) throws Exception {
 
 		Connection con = TestConnect.getConnection();
@@ -100,8 +106,8 @@ public class DegreeDAOImplementation implements DegreeInterface {
 			String name = rs.getString("deg_name");
 
 			Degree d = new Degree();
-			d.id = id;
-			d.name = name;
+			d.setId(id);
+			d.setName(name);
 
 			list.add(d);
 

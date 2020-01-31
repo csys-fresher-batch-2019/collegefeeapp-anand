@@ -11,6 +11,12 @@ import sxc.util.TestConnect;
 
 public class StudentDAOImplementation implements Student {
 
+	public static StudentDAOImplementation getInstance()
+	{
+		StudentDAOImplementation obj= new StudentDAOImplementation();
+		return obj;
+	}
+	
 	public void addStudent(String regno, String name, int courseId) throws Exception {
 
 		Connection con = TestConnect.getConnection();
@@ -80,10 +86,10 @@ public class StudentDAOImplementation implements Student {
 
 		while (rs.next()) {
 			Stud_Class s = new Stud_Class();
-			s.regno = rs.getString("std_id");
-			s.name = rs.getString("std_name");
-			s.course_id = rs.getInt("course_id");
-			s.stud_active = rs.getInt("stud_active");
+			s.setRegno(rs.getString("std_id"));
+			s.setName( rs.getString("std_name"));
+			s.setCourse_id( rs.getInt("course_id"));
+			s.setStud_active( rs.getInt("stud_active"));
 
 			list.add(s);
 		}
@@ -105,10 +111,10 @@ public class StudentDAOImplementation implements Student {
 
 		while (rs.next()) {
 			Stud_Class s = new Stud_Class();
-			s.regno = rs.getString("std_id");
-			s.name = rs.getString("std_name");
-			s.course_id = rs.getInt("course_id");
-			s.stud_active = rs.getInt("stud_active");
+			s.setRegno( rs.getString("std_id"));
+			s.setName( rs.getString("std_name"));
+			s.setCourse_id( rs.getInt("course_id"));
+			s.setStud_active( rs.getInt("stud_active"));
 
 			list.add(s);
 		}

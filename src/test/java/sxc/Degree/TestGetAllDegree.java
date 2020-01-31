@@ -10,7 +10,7 @@ public class TestGetAllDegree {
 		// TODO Auto-generated method stub
 		Logger logger=Logger.getInstance();
 		
-		DegreeDAOImplementation obj=new DegreeDAOImplementation();
+		DegreeDAOImplementation obj= DegreeDAOImplementation.getInstance();
 		ArrayList<Degree> list=obj.getAllDegree();
 		logger.info(list.toString());
 	}
