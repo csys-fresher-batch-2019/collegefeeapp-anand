@@ -11,6 +11,8 @@ import sxc.util.TestConnect;
 
 public class StudentDAOImplementation implements Student {
 
+	Logger logger=Logger.getInstance();
+	
 	public static StudentDAOImplementation getInstance()
 	{
 		StudentDAOImplementation obj= new StudentDAOImplementation();
@@ -21,7 +23,6 @@ public class StudentDAOImplementation implements Student {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
 				+ ")";
@@ -35,11 +36,9 @@ public class StudentDAOImplementation implements Student {
 	}
 
 	public void updateStudentName(String regno, String name) throws Exception {
-		// TODO Auto-generated method stub
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
 		
 		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
@@ -55,12 +54,9 @@ public class StudentDAOImplementation implements Student {
 	}
 
 	public void deleteStudent(String regno) throws Exception {
-		// TODO Auto-generated method stub
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-
-		Logger logger=Logger.getInstance();
-		
+	
 		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
@@ -75,7 +71,6 @@ public class StudentDAOImplementation implements Student {
 	}
 
 	public ArrayList<Stud_Class> getAllActiveStudents() throws Exception {
-		// TODO Auto-generated method stub
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
@@ -99,12 +94,11 @@ public class StudentDAOImplementation implements Student {
 		return list;
 	}
 
-	public ArrayList<Stud_Class> getActiveStudentsByCourse(int course_id) throws Exception {
-		// TODO Auto-generated method stub
+	public ArrayList<Stud_Class> getActiveStudentsByCourse(int courseId) throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "select * from student where course_id=" + course_id + " and stud_active=1";
+		String sql = "select * from student where course_id=" + courseId + " and stud_active=1";
 		ResultSet rs = stmt.executeQuery(sql);
 
 		ArrayList<Stud_Class> list = new ArrayList<Stud_Class>();
@@ -130,19 +124,19 @@ public class StudentDAOImplementation implements Student {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		int course_id = 0;
+		int courseId = 0;
 
 		String sql = "select course_id from student where std_id='" + regno + "'";
 
 		ResultSet rs = stmt.executeQuery(sql);
 
 		if (rs.next()) {
-			course_id = rs.getInt("course_id");
+			courseId = rs.getInt("course_id");
 		} else {
 			throw new NotFoundException("No Student record found");
 		}
 
-		return course_id;
+		return courseId;
 	}
 
 }

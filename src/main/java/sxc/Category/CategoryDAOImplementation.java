@@ -10,6 +10,8 @@ import sxc.util.TestConnect;
 
 public class CategoryDAOImplementation implements CategoryInterface {
 
+	Logger logger=Logger.getInstance();
+	
 	public static CategoryDAOImplementation getInstance()
 	{
 		CategoryDAOImplementation obj= new CategoryDAOImplementation();
@@ -17,10 +19,9 @@ public class CategoryDAOImplementation implements CategoryInterface {
 	}
 	
 	public void addFeeCategory(String name) throws Exception {
-		// TODO Auto-generated method stub
+		
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
 		
 		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
 				+ name + "')";
@@ -32,12 +33,10 @@ public class CategoryDAOImplementation implements CategoryInterface {
 	}
 
 	public int getFeeCategoryId(String name) throws Exception {
-		// TODO Auto-generated method stub
-
+		
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
 		
 		String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
 		logger.info(sql);
@@ -52,11 +51,9 @@ public class CategoryDAOImplementation implements CategoryInterface {
 	}
 
 	public String getFeeCategoryName(int id) throws Exception {
-		// TODO Auto-generated method stub
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
 		
 		String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
 		logger.info(sql);
