@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
 
@@ -51,7 +52,7 @@ public class SemesterDAOImplementation implements SemesterInterface {
 		if (rs.next()) {
 			semId = rs.getInt("sem_id");
 		} else {
-			throw new Exception("Invalid semester");
+			throw new NotFoundException("Invalid semester");
 		}
 
 		return semId;
