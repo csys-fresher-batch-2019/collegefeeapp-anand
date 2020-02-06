@@ -10,19 +10,16 @@ import sxc.util.TestConnect;
 
 public class SemesterDAOImplementation implements SemesterInterface {
 
-	public static SemesterDAOImplementation getInstance()
-	{
-		SemesterDAOImplementation obj= new SemesterDAOImplementation();
-		return obj;
+	public static SemesterDAOImplementation getInstance() {
+		return new SemesterDAOImplementation();
 	}
-	
-	
+
 	public void addSemester(Semester s) throws Exception {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval," + s.getsemType()
 				+ "," + s.getaccYear() + ")";
 
@@ -40,7 +37,7 @@ public class SemesterDAOImplementation implements SemesterInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String sql = "select sem_id from semester where acc_yr_begin=" + yr + " and sem_type=" + semType + " ";
 
 		logger.info(sql);

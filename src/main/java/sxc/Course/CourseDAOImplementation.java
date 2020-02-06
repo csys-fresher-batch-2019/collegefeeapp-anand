@@ -1,9 +1,7 @@
 package sxc.Course;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -13,12 +11,10 @@ import sxc.util.TestConnect;
 
 public class CourseDAOImplementation implements CourseInterface {
 
-	public static CourseDAOImplementation getInstance()
-	{
-		CourseDAOImplementation obj=new CourseDAOImplementation();
-		return obj;
+	public static CourseDAOImplementation getInstance() {
+		return new CourseDAOImplementation();
 	}
-	
+
 	public void addCourse(int deptId, int degId) throws Exception {
 		Connection con = TestConnect.getConnection();
 
@@ -69,7 +65,7 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		String sql1 = "select dept_name from department where dept_id=(select dept_id from course where course_id="
 				+ courseId + ")";
-		System.out.println(sql1);
+		logger.info(sql1);
 		ResultSet rs1 = stmt.executeQuery(sql1);
 
 		if (rs1.next()) {
@@ -92,8 +88,7 @@ public class CourseDAOImplementation implements CourseInterface {
 			throw new NotFoundException("Course doesnot Exist");
 		}
 
-		String courseName = degreeName + " (" + deptName + ")";
-		return courseName;
+		return degreeName + " (" + deptName + ")";
 
 	}
 
@@ -116,7 +111,7 @@ public class CourseDAOImplementation implements CourseInterface {
 	}
 
 	public ArrayList<Course> getAllCourse() throws Exception {
-		// TODO Auto-generated method stub
+
 		ArrayList<Course> list = new ArrayList<Course>();
 
 		Connection con = TestConnect.getConnection();
@@ -127,14 +122,14 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		while (rs.next()) {
 			Course c = new Course();
-			c.setCourseId(rs.getInt("course_id")) ;
-			c.setDegreeId(rs.getInt("deg_id")) ;
+			c.setCourseId(rs.getInt("course_id"));
+			c.setDegreeId(rs.getInt("deg_id"));
 			c.setDegreeId(rs.getInt("dept_id"));
 			c.setStatus(rs.getInt("course_active"));
 
 			list.add(c);
 		}
-		
+
 		return list;
 	}
 }

@@ -3,8 +3,6 @@ package sxc.util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import sxc.util.TestConnect;
-
 public class JdbcUtil {
 
 	public static int executeUpdate(String sql, Object... params) throws Exception {

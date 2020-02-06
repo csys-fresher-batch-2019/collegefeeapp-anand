@@ -10,20 +10,19 @@ import java.util.Scanner;
 
 public class DegreeDAOImplementation implements DegreeInterface {
 
-	public static DegreeDAOImplementation getInstance()
-	{
-		DegreeDAOImplementation obj=new DegreeDAOImplementation();
-		return obj;
+	public static DegreeDAOImplementation getInstance() {
+
+		return new DegreeDAOImplementation();
 	}
-	
+
 	public void addDegree(String name, int durationInYears) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
-		Logger logger= Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name + "',"
 				+ durationInYears + ")";
 
@@ -40,9 +39,9 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		
-		Logger logger=Logger.getInstance();
-		
+
+		Logger logger = Logger.getInstance();
+
 		String degName = null;
 		ResultSet rs2;
 
@@ -70,8 +69,8 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		String sql1 = "select deg_id from degree where deg_name='" + degName + "'";
 		logger.info(sql1);
 
@@ -90,11 +89,10 @@ public class DegreeDAOImplementation implements DegreeInterface {
 	}
 
 	public ArrayList<Degree> getAllDegree() throws Exception {
-		// TODO Auto-generated method stub
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		Logger logger=Logger.getInstance();
-		
+		Logger logger = Logger.getInstance();
+
 		ArrayList<Degree> list = new ArrayList<Degree>();
 
 		String sql = "select * from degree";

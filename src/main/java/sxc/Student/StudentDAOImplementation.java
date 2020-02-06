@@ -11,19 +11,17 @@ import sxc.util.TestConnect;
 
 public class StudentDAOImplementation implements Student {
 
-	Logger logger=Logger.getInstance();
-	
-	public static StudentDAOImplementation getInstance()
-	{
-		StudentDAOImplementation obj= new StudentDAOImplementation();
-		return obj;
+	Logger logger = Logger.getInstance();
+
+	public static StudentDAOImplementation getInstance() {
+		return new StudentDAOImplementation();
 	}
-	
+
 	public void addStudent(String regno, String name, int courseId) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		
+
 		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
 				+ ")";
 		logger.info(sql);
@@ -39,14 +37,12 @@ public class StudentDAOImplementation implements Student {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-		
+
 		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
 			logger.info("Student Name Updated");
-		}
-		else
-		{
+		} else {
 			throw new NotFoundException("No Student record found");
 		}
 		stmt.close();
@@ -56,14 +52,12 @@ public class StudentDAOImplementation implements Student {
 	public void deleteStudent(String regno) throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
-	
+
 		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
 			logger.info("Student Deleted");
-		}
-		else
-		{
+		} else {
 			throw new NotFoundException("No Student record found");
 		}
 		stmt.close();
@@ -82,9 +76,9 @@ public class StudentDAOImplementation implements Student {
 		while (rs.next()) {
 			Stud_Class s = new Stud_Class();
 			s.setRegno(rs.getString("std_id"));
-			s.setName( rs.getString("std_name"));
-			s.setCourse_id( rs.getInt("course_id"));
-			s.setStud_active( rs.getInt("stud_active"));
+			s.setName(rs.getString("std_name"));
+			s.setCourse_id(rs.getInt("course_id"));
+			s.setStud_active(rs.getInt("stud_active"));
 
 			list.add(s);
 		}
@@ -105,10 +99,10 @@ public class StudentDAOImplementation implements Student {
 
 		while (rs.next()) {
 			Stud_Class s = new Stud_Class();
-			s.setRegno( rs.getString("std_id"));
-			s.setName( rs.getString("std_name"));
-			s.setCourse_id( rs.getInt("course_id"));
-			s.setStud_active( rs.getInt("stud_active"));
+			s.setRegno(rs.getString("std_id"));
+			s.setName(rs.getString("std_name"));
+			s.setCourse_id(rs.getInt("course_id"));
+			s.setStud_active(rs.getInt("stud_active"));
 
 			list.add(s);
 		}

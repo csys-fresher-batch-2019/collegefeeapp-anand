@@ -12,8 +12,7 @@ import sxc.util.TestConnect;
 public class DeptDAOImplementation implements DeptInterface {
 
 	public static DeptDAOImplementation getInstance() {
-		DeptDAOImplementation obj = new DeptDAOImplementation();
-		return obj;
+		return new DeptDAOImplementation();
 	}
 
 	public void addDepartment(String name) throws Exception {
@@ -52,14 +51,14 @@ public class DeptDAOImplementation implements DeptInterface {
 		return deptId;
 	}
 
-	public String getDepartmentName(int dept_id) throws Exception {
+	public String getDepartmentName(int deptId) throws Exception {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
 		Logger logger = Logger.getInstance();
 		String deptName = "";
-		String sql = "select dept_name from department where dept_id=" + dept_id + "";
+		String sql = "select dept_name from department where dept_id=" + deptId + "";
 		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);

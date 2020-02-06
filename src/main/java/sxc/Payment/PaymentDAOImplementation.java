@@ -8,12 +8,11 @@ import java.sql.*;
 
 public class PaymentDAOImplementation implements PaymentInterface {
 
-	public static PaymentDAOImplementation getInstance()
-	{
-		PaymentDAOImplementation obj=new PaymentDAOImplementation();
-		return obj;
+	public static PaymentDAOImplementation getInstance() {
+
+		return new PaymentDAOImplementation();
 	}
-	
+
 	public void addPayment(PaymentDetail p) throws Exception {
 
 		Connection con = TestConnect.getConnection();
@@ -22,7 +21,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		Logger logger = Logger.getInstance();
 
 		String sql = "insert into payment(payment_id,payment_date,std_id,course_fee_id,sem_id,paid_amount) values(payment_seq.nextval,to_date(SYSDATE,'dd-MM-yyyy'),'"
-				+ p.getRegno()+ "'," + p.getFeeCourseId() + "," + p.getSemId() + "," + p.getAmount() + ")";
+				+ p.getRegno() + "'," + p.getFeeCourseId() + "," + p.getSemId() + "," + p.getAmount() + ")";
 
 		logger.info(sql);
 		stmt.executeUpdate(sql);
@@ -32,8 +31,6 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	}
 
 	public List<PaymentDetail> listbysem(int semId) throws Exception {
-		// TODO Auto-generated method stub
-
 		Connection connection = TestConnect.getConnection();
 
 		Statement st = connection.createStatement();
@@ -57,7 +54,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			PaymentDetail pd = new PaymentDetail();
 			pd.setId(id);
 			pd.setAmount(amount);
-			//LocalDate date2=date.valueOf(date);
+			// LocalDate date2=date.valueOf(date);
 			pd.setDate(date);
 			pd.setFeeCourseId(feeCourseId);
 			pd.setRegno(regno);
@@ -70,7 +67,6 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	}
 
 	public List<PaymentDetail> listbyregno(String regno) throws Exception {
-		// TODO Auto-generated method stub
 		Logger logger = Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment where std_id='"
 				+ regno + "'";
@@ -90,7 +86,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			int feeCourseId = rs.getInt("course_fee_id");
 			int amount = rs.getInt("paid_amount");
 			int semId = rs.getInt("sem_id");
-			
+
 			pd.setId(id);
 			pd.setSemId(semId);
 			pd.setAmount(amount);
@@ -107,8 +103,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	}
 
 	public List<PaymentDetail> listbyCategoryId(int categoryId, int semId) throws Exception {
-		// TODO Auto-generated method stub
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String sql = "select course_fee_id,sum(paid_amount) from payment group by course_fee_id having sem_id =" + semId
 				+ "";
 		logger.info(sql);
@@ -126,8 +121,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	}
 
 	public List<PaymentDetail> listbyDeptName(String departmentName, int semId) throws Exception {
-		// TODO Auto-generated method stub
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 
@@ -145,8 +139,7 @@ public class PaymentDAOImplementation implements PaymentInterface {
 	}
 
 	public List<PaymentDetail> listbyCourseId(int courseId, int semId) throws Exception {
-		// TODO Auto-generated method stub
-		Logger logger=Logger.getInstance();
+		Logger logger = Logger.getInstance();
 		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
 		logger.info(sql);
 
