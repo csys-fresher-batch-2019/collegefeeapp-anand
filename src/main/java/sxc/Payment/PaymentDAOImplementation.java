@@ -81,19 +81,14 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 		PaymentDetail pd = new PaymentDetail();
 		while (rs.next()) {
-			int id = rs.getInt("payment_id");
-			Date date = rs.getDate("payment_date");
-			int feeCourseId = rs.getInt("course_fee_id");
-			int amount = rs.getInt("paid_amount");
-			int semId = rs.getInt("sem_id");
 
-			pd.setId(id);
-			pd.setSemId(semId);
-			pd.setAmount(amount);
-			pd.setDate(date);
-			pd.setFeeCourseId(feeCourseId);
+			pd.setId(rs.getInt("payment_id"));
+			pd.setSemId(rs.getInt("sem_id"));
+			pd.setAmount(rs.getInt("paid_amount"));
+			pd.setDate(rs.getDate("payment_date"));
+			pd.setFeeCourseId(rs.getInt("course_fee_id"));
 			pd.setRegno(regno);
-			pd.setId(id);
+			pd.setId(rs.getInt("payment_id"));
 
 			list.add(pd);
 
@@ -101,58 +96,4 @@ public class PaymentDAOImplementation implements PaymentInterface {
 
 		return list;
 	}
-
-	public List<PaymentDetail> listbyCategoryId(int categoryId, int semId) throws Exception {
-		Logger logger = Logger.getInstance();
-		String sql = "select course_fee_id,sum(paid_amount) from payment group by course_fee_id having sem_id =" + semId
-				+ "";
-		logger.info(sql);
-
-		Connection con = TestConnect.getConnection();
-		Statement st = con.createStatement();
-
-		ResultSet rs = st.executeQuery(sql);
-
-		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
-
-		PaymentDetail pd = new PaymentDetail();
-
-		return list;
-	}
-
-	public List<PaymentDetail> listbyDeptName(String departmentName, int semId) throws Exception {
-		Logger logger = Logger.getInstance();
-		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
-		logger.info(sql);
-
-		Connection con = TestConnect.getConnection();
-		Statement st = con.createStatement();
-
-		ResultSet rs = st.executeQuery(sql);
-
-		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
-
-		PaymentDetail pd = new PaymentDetail();
-
-		return list;
-
-	}
-
-	public List<PaymentDetail> listbyCourseId(int courseId, int semId) throws Exception {
-		Logger logger = Logger.getInstance();
-		String sql = "select payment_id,payment_date,course_fee_id,sem_id,paid_amount from payment";
-		logger.info(sql);
-
-		Connection con = TestConnect.getConnection();
-		Statement st = con.createStatement();
-
-		ResultSet rs = st.executeQuery(sql);
-
-		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
-
-		PaymentDetail pd = new PaymentDetail();
-
-		return list;
-	}
-
 }
