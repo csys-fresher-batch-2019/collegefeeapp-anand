@@ -18,60 +18,50 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		return new CategoryDAOImplementation();
 	}
 
-	public void addFeeCategory(String name) throws DbException {
+	public void addFeeCategory(String name) throws Exception {
 
-		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+		Connection con = TestConnect.getConnection();
+		Statement stmt = con.createStatement();
 
-			String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
-					+ name + "')";
-			stmt.executeUpdate(sql);
+		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
+				+ name + "')";
+		stmt.executeUpdate(sql);
 
-			logger.info(sql);
-			logger.info("Category added");
-		} catch (SQLException e) {
-			logger.error(e.getMessage());
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
+		logger.info(sql);
+		logger.info("Category added");
 	}
 
-	public int getFeeCategoryId(String name) throws DbException {
+	public int getFeeCategoryId(String name) throws Exception {
 		int id = 0;
-		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+		Connection con = TestConnect.getConnection();
+		Statement stmt = con.createStatement();
 
-			String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
-			logger.info(sql);
+		String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
+		logger.info(sql);
 
-			ResultSet rs = stmt.executeQuery(sql);
+		ResultSet rs = stmt.executeQuery(sql);
 
-			if (rs.next()) {
-				id = rs.getInt("fee_category_id");
-			}
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+		if (rs.next()) {
+			id = rs.getInt("fee_category_id");
 		}
 
 		return id;
 	}
 
-	public String getFeeCategoryName(int id) throws DbException {
+	public String getFeeCategoryName(int id) throws Exception {
 		String name = null;
 
-		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+		Connection con = TestConnect.getConnection();
+		Statement stmt = con.createStatement();
 
-			String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
-			logger.info(sql);
+		String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
+		logger.info(sql);
 
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				name = rs.getString("fee_category_name");
-			} else {
-				throw new NotFoundException("Category doesnot exist");
-			}
-		}
-
-		catch (Exception e) {
-			logger.error(e.getMessage());
+		ResultSet rs = stmt.executeQuery(sql);
+		if (rs.next()) {
+			name = rs.getString("fee_category_name");
+		} else {
+			throw new NotFoundException("Category doesnot exist");
 		}
 		return name;
 	}
