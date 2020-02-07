@@ -19,7 +19,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger = new Logger();
+		Logger logger = Logger.getInstance();
 
 		String sql = "insert into course(course_id,dept_id,deg_id) values(course_seq.nextVal," + deptId + "," + degId
 				+ ")";
@@ -39,7 +39,6 @@ public class CourseDAOImplementation implements CourseInterface {
 
 		Statement stmt = con.createStatement();
 
-		Logger logger = new Logger();
 		String sql = "select course_id from course where deg_id= " + degId + " and dept_id=" + deptId + "";
 		ResultSet rs = stmt.executeQuery(sql);
 		int result = 0;
@@ -96,7 +95,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
-		Logger logger = new Logger();
+		Logger logger = Logger.getInstance();
 
 		String sql = "update course set course_active=0 where course_id=" + courseId + "";
 		int rows = stmt.executeUpdate(sql);

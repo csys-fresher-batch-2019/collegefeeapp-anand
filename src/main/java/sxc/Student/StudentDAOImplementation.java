@@ -17,12 +17,12 @@ public class StudentDAOImplementation implements Student {
 		return new StudentDAOImplementation();
 	}
 
-	public void addStudent(String regno, String name, int courseId) throws Exception {
+	public void addStudent(Stud_Class s) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "insert into student(std_id,std_name,course_id) values('" + regno + "','" + name + "'," + courseId
+		String sql = "insert into student(std_id,std_name,course_id) values('" + s.getRegno() + "','" + s.getName() + "'," + s.getCourseId()
 				+ ")";
 		logger.info(sql);
 		stmt.executeUpdate(sql);
@@ -33,12 +33,12 @@ public class StudentDAOImplementation implements Student {
 		con.close();
 	}
 
-	public void updateStudentName(String regno, String name) throws Exception {
+	public void updateStudentName(Stud_Class s) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "update student set std_name='" + name + "' where std_id='" + regno + "'";
+		String sql = "update student set std_name='" + s.getName() + "' where std_id='" + s.getRegno() + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
 			logger.info("Student Name Updated");
@@ -49,11 +49,11 @@ public class StudentDAOImplementation implements Student {
 		con.close();
 	}
 
-	public void deleteStudent(String regno) throws Exception {
+	public void deleteStudent(Stud_Class s) throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "update student set stud_active=0 where std_id='" + regno + "'";
+		String sql = "update student set stud_active=0 where std_id='" + s.getRegno() + "'";
 		int row = stmt.executeUpdate(sql);
 		if (row > 0) {
 			logger.info("Student Deleted");
@@ -113,14 +113,14 @@ public class StudentDAOImplementation implements Student {
 		return list;
 	}
 
-	public int getCourseIdByRegno(String regno) throws Exception {
+	public int getCourseIdByRegno(Stud_Class s) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		int courseId = 0;
 
-		String sql = "select course_id from student where std_id='" + regno + "'";
+		String sql = "select course_id from student where std_id='" + s.getRegno() + "'";
 
 		ResultSet rs = stmt.executeQuery(sql);
 

@@ -45,19 +45,16 @@ public class PaymentDAOImplementation implements PaymentInterface {
 		ArrayList<PaymentDetail> list = new ArrayList<PaymentDetail>();
 
 		while (rs.next()) {
-			int id = rs.getInt("payment_id");
-			Date date = rs.getDate("payment_date");
-			String regno = rs.getString("std_id");
-			int feeCourseId = rs.getInt("course_fee_id");
-			int amount = rs.getInt("paid_amount");
 
 			PaymentDetail pd = new PaymentDetail();
-			pd.setId(id);
-			pd.setAmount(amount);
-			// LocalDate date2=date.valueOf(date);
+			pd.setId(rs.getInt("payment_id"));
+			pd.setAmount(rs.getInt("paid_amount"));
+
+			Date date = rs.getDate("payment_date");
+
 			pd.setDate(date);
-			pd.setFeeCourseId(feeCourseId);
-			pd.setRegno(regno);
+			pd.setFeeCourseId(rs.getInt("course_fee_id"));
+			pd.setRegno(rs.getString("std_id"));
 			pd.setSemId(semId);
 
 			list.add(pd);
@@ -88,7 +85,6 @@ public class PaymentDAOImplementation implements PaymentInterface {
 			pd.setDate(rs.getDate("payment_date"));
 			pd.setFeeCourseId(rs.getInt("course_fee_id"));
 			pd.setRegno(regno);
-			pd.setId(rs.getInt("payment_id"));
 
 			list.add(pd);
 

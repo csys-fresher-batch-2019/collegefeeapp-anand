@@ -5,16 +5,21 @@ import java.util.Scanner;
 public class TestAddStudent {
 
 	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
 
-		// TODO Auto-generated method stub
-		Scanner sc=new Scanner(System.in);
-
-		String regno=(sc.nextLine()).toUpperCase();
+		String regno = (sc.nextLine()).toUpperCase();
 		String name = (sc.nextLine()).toUpperCase();
-		int courseId=sc.nextInt();
-		
+		int courseId = sc.nextInt();
+
 		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
-		obj.addStudent(regno,name,courseId);
+
+		Stud_Class s = new Stud_Class();
+
+		s.setCourse_id(courseId);
+		s.setName(name);
+		s.setRegno(regno);
+
+		obj.addStudent(s);
 	}
 
 }

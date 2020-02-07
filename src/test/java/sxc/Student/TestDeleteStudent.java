@@ -7,11 +7,14 @@ public class TestDeleteStudent {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Scanner sc=new Scanner(System.in);
-		String regno =sc.next().toUpperCase();
+		Scanner sc = new Scanner(System.in);
+		String regno = sc.next().toUpperCase();
+
+		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
+		Stud_Class s=new Stud_Class();
 		
-		StudentDAOImplementation obj =StudentDAOImplementation.getInstance();
-		obj.deleteStudent(regno);
+		s.setRegno(regno);
+		obj.deleteStudent(s);
 	}
 
 }

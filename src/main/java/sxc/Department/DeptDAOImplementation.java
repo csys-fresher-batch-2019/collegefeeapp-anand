@@ -20,7 +20,7 @@ public class DeptDAOImplementation implements DeptInterface {
 		Logger logger = Logger.getInstance();
 
 		Statement stmt = con.createStatement();
-		String sql = "insert into department(dept_id,dept_name) values( department_seq.nextval ,'" + name + "')";
+		String sql = "insert into department(dept_id,dept_name) values( department_seq.nextval ,'" + name.toUpperCase() + "')";
 		logger.info(sql);
 		int rows = stmt.executeUpdate(sql);
 		logger.info("NO OF ROWS AFFECTED:" + rows);
@@ -73,11 +73,11 @@ public class DeptDAOImplementation implements DeptInterface {
 		return deptName;
 	}
 
-	public ArrayList<Department> listAllDepartments() throws Exception {
+	public ArrayList<String> listAllDepartments() throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		ArrayList<Department> list = new ArrayList<Department>();
+		ArrayList<String> list = new ArrayList<>();
 
 		String sql = "select * from department";
 		ResultSet rs = stmt.executeQuery(sql);
@@ -86,10 +86,9 @@ public class DeptDAOImplementation implements DeptInterface {
 			String name = rs.getString("dept_name");
 
 			Department d = new Department();
-			d.setDeptId(id);
 			d.setDeptName(name);
 
-			list.add(d);
+			list.add(d.getDeptName());
 		}
 		stmt.close();
 		con.close();

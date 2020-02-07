@@ -15,13 +15,13 @@ public class TestGetAllDepartments {
 		
 		Logger logger=Logger.getInstance();
 		DeptDAOImplementation obj=DeptDAOImplementation.getInstance();
-		ArrayList<Department> listDept=obj.listAllDepartments();
+		ArrayList<String> listDept=obj.listAllDepartments();
 		logger.info(listDept.toString());
 		
 		String fileContent="";
 		
-		for (Department department : listDept) {
-			String line="\n DEPT NAME: "+department.getDeptName()+"\n DEPT ID: "+department.getDeptId();
+		for (String department : listDept) {
+			String line="DEPT NAME: "+department+"\n";
 			fileContent=fileContent+line;
 		}
 		

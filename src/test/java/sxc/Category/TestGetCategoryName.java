@@ -11,9 +11,12 @@ public class TestGetCategoryName {
 		Scanner sc = new Scanner(System.in);
 		Logger logger=Logger.getInstance();
 		int id = sc.nextInt();
+		
+		Category c =new Category();
+		c.setId(id);
 
 		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
-		String name = obj.getFeeCategoryName(id);
+		String name = obj.getFeeCategoryName(c);
 		logger.info("Category Name: " + name);
 
 	}

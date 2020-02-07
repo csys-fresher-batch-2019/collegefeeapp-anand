@@ -13,8 +13,11 @@ public class TestGetCategoryId {
 		String name = sc.nextLine().toUpperCase();
 		Logger logger = Logger.getInstance();
 
+		Category c =new Category();
+		c.setName(name);
+		
 		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
-		int id = obj.getFeeCategoryId(name);
+		int id = obj.getFeeCategoryId(c);
 		logger.info("Category ID: " + id);
 
 	}

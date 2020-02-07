@@ -1,6 +1,7 @@
 package sxc.Semester;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -17,28 +18,29 @@ public class SemesterDAOImplementation implements SemesterInterface {
 	public void addSemester(Semester s) throws Exception {
 		Connection con = TestConnect.getConnection();
 
-		Statement stmt = con.createStatement();
 		Logger logger = Logger.getInstance();
 
 		String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval," + s.getsemType()
 				+ "," + s.getaccYear() + ")";
 
+		Statement stmt = con.createStatement();
+
 		stmt.executeUpdate(sql);
 
 		logger.info("Semester Generated");
 
-		stmt.close();
 		con.close();
 
 	}
 
-	public int getSemId(int yr, int semType) throws Exception {
+	public int getSemId(Semester s) throws Exception {
 		Connection con = TestConnect.getConnection();
 
 		Statement stmt = con.createStatement();
 
 		Logger logger = Logger.getInstance();
-		String sql = "select sem_id from semester where acc_yr_begin=" + yr + " and sem_type=" + semType + " ";
+		String sql = "select sem_id from semester where acc_yr_begin=" + s.getaccYear() + " and sem_type="
+				+ s.getsemType() + " ";
 
 		logger.info(sql);
 

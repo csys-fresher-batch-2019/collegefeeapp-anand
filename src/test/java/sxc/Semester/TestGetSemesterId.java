@@ -11,7 +11,12 @@ public class TestGetSemesterId {
 		SemesterDAOImplementation obj = SemesterDAOImplementation.getInstance();
 		int yr = 2018;
 		int semType = 0;
-		int semId = obj.getSemId(yr, semType);
+
+		Semester s = new Semester();
+		s.setaccYear(yr);
+		s.setsemType(semType);
+
+		int semId = obj.getSemId(s);
 		logger.info(semId);
 	}
 

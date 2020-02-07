@@ -2,10 +2,8 @@ package sxc.Category;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
-import sxc.SXCException.DbException;
 import sxc.SXCException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
@@ -18,25 +16,25 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		return new CategoryDAOImplementation();
 	}
 
-	public void addFeeCategory(String name) throws Exception {
+	public void addFeeCategory(Category c) throws Exception {
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
 		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
-				+ name + "')";
+				+ c.getName() + "')";
 		stmt.executeUpdate(sql);
 
 		logger.info(sql);
 		logger.info("Category added");
 	}
 
-	public int getFeeCategoryId(String name) throws Exception {
+	public int getFeeCategoryId(Category c) throws Exception {
 		int id = 0;
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "select fee_category_id from fee_category where fee_category_name='" + name + "'";
+		String sql = "select fee_category_id from fee_category where fee_category_name='" + c.getName() + "'";
 		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
@@ -48,13 +46,13 @@ public class CategoryDAOImplementation implements CategoryInterface {
 		return id;
 	}
 
-	public String getFeeCategoryName(int id) throws Exception {
+	public String getFeeCategoryName(Category c) throws Exception {
 		String name = null;
 
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "select fee_category_name from fee_category where fee_category_id=" + id + "";
+		String sql = "select fee_category_name from fee_category where fee_category_id=" + c.getId() + "";
 		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);

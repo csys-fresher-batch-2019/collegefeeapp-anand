@@ -6,12 +6,10 @@ import sxc.SXCException.NotFoundException;
 import sxc.util.*;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DegreeDAOImplementation implements DegreeInterface {
 
 	public static DegreeDAOImplementation getInstance() {
-
 		return new DegreeDAOImplementation();
 	}
 
@@ -23,10 +21,11 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		Logger logger = Logger.getInstance();
 
-		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name + "',"
-				+ durationInYears + ")";
+		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name.toUpperCase()
+				+ "'," + durationInYears + ")";
 
 		logger.info(sql);
+		stmt.executeUpdate(sql);
 
 		logger.info("Degree Inserted");
 
@@ -45,10 +44,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		String degName = null;
 		ResultSet rs2;
 
-		Scanner sc = new Scanner(System.in);
-		int deg_id = sc.nextInt();
-
-		String sql2 = "select deg_name from degree where deg_id=" + deg_id + "";
+		String sql2 = "select deg_name from degree where deg_id=" + degId + "";
 		logger.info(sql2);
 		rs2 = stmt.executeQuery(sql2);
 
@@ -88,26 +84,23 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		return degId;
 	}
 
-	public ArrayList<Degree> getAllDegree() throws Exception {
+	public ArrayList<String> getAllDegree() throws Exception {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 		Logger logger = Logger.getInstance();
 
-		ArrayList<Degree> list = new ArrayList<Degree>();
+		ArrayList<String> list = new ArrayList<>();
 
 		String sql = "select * from degree";
 		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next()) {
-			int id = rs.getInt("deg_id");
-			String name = rs.getString("deg_name");
 
 			Degree d = new Degree();
-			d.setId(id);
-			d.setName(name);
+			d.setName(rs.getString("deg_name"));
 
-			list.add(d);
+			list.add(d.getName());
 
 		}
 		stmt.close();

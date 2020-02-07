@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 public class FileUtil {
 
 	public static void writeToFile(String fileName, String content) throws IOException {
-		// TODO Auto-generated method stub
 
 		Path path = Paths.get(fileName);
 		byte[] bytes = content.getBytes();

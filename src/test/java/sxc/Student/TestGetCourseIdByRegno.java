@@ -15,9 +15,14 @@ public class TestGetCourseIdByRegno {
 		String regno = sc.nextLine().toUpperCase();
 
 		StudentDAOImplementation stdObj = StudentDAOImplementation.getInstance();
-		int courseId = stdObj.getCourseIdByRegno(regno);
-		logger.info("COURSE ID: " + courseId);
+		
+		Stud_Class s =new Stud_Class();
+		s.setRegno(regno);
 
+		int courseId = stdObj.getCourseIdByRegno(s);
+		logger.info("COURSE ID: " + courseId);
+		
+		
 	}
 
 }

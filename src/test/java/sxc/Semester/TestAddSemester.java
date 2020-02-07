@@ -10,7 +10,7 @@ public class TestAddSemester {
 		SemesterDAOImplementation obj = SemesterDAOImplementation.getInstance();
 
 		Semester s = new Semester();
-		s.setaccYear(2007);
+		s.setaccYear(2002);
 		s.setsemType(1);
 
 		obj.addSemester(s);

@@ -26,22 +26,22 @@ public class Stud_Class {
 		this.stud_active = stud_active;
 	}
 
-	public int getCourse_id() {
-		return course_id;
+	public int getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse_id(int course_id) {
-		this.course_id = course_id;
+	public void setCourse_id(int courseId) {
+		this.courseId = courseId;
 	}
 
 	private String name;
 	private String regno;
 	private int stud_active;
-	private int course_id;
+	private int courseId;
 
 	@Override
 	public String toString() {
-		return "Stud_Class [name=" + name + ", regno=" + regno + ", stud_active=" + stud_active + ", course_id="
-				+ course_id + "]";
+		return "Stud_Class [name=" + name + ", regno=" + regno + ", stud_active=" + stud_active + ", course ID="
+				+ courseId + "]";
 	}
 }

@@ -11,7 +11,7 @@ public class TestGetAllDegree {
 		Logger logger=Logger.getInstance();
 		
 		DegreeDAOImplementation obj= DegreeDAOImplementation.getInstance();
-		ArrayList<Degree> list=obj.getAllDegree();
+		ArrayList<String> list=obj.getAllDegree();
 		logger.info(list.toString());
 	}
 
