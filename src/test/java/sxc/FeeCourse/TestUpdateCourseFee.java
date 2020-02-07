@@ -2,6 +2,7 @@ package sxc.FeeCourse;
 
 import java.util.Scanner;
 
+import sxc.Category.Category;
 import sxc.Category.CategoryDAOImplementation;
 import sxc.Course.CourseDAOImplementation;
 import sxc.Degree.DegreeDAOImplementation;
@@ -34,7 +35,11 @@ public class TestUpdateCourseFee {
 		logger.info("COURSE ID: "+courseId);
 		
 		String categoryName=sc.nextLine().toUpperCase();
-		int feeCategoryId=catObj.getFeeCategoryId(categoryName);
+		
+		Category c =new Category();
+		c.setName(categoryName);
+		
+		int feeCategoryId=catObj.getFeeCategoryId(c);
 		logger.info("FEE CATEGORY ID: "+feeCategoryId);
 		
 		int amount=sc.nextInt();

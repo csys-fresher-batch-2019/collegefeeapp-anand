@@ -2,12 +2,15 @@ package sxc.Payment;
 
 import java.util.Scanner;
 
+import sxc.Category.Category;
 import sxc.Category.CategoryDAOImplementation;
 import sxc.Course.CourseDAOImplementation;
 import sxc.FeeCourse.FeeCourseDAOImplementation;
 import sxc.SXCException.InvalidInputException;
 import sxc.SXCException.NotFoundException;
+import sxc.Semester.Semester;
 import sxc.Semester.SemesterDAOImplementation;
+import sxc.Student.Stud_Class;
 import sxc.Student.StudentDAOImplementation;
 import sxc.util.Logger;
 
@@ -35,12 +38,18 @@ public class TestAddPayment
 
 		String regno=sc.nextLine().toUpperCase();
 
-		int courseId=stdObj.getCourseIdByRegno(regno);
+		Stud_Class s=new Stud_Class();
+		s.setRegno(regno);
+		int courseId=stdObj.getCourseIdByRegno(s);
 		
 		logger.info("COURSE ID: "+courseId);
 		
 		String categoryName=sc.nextLine().toUpperCase();
-		int feeCategoryId=catObj.getFeeCategoryId(categoryName);
+		
+		Category c=new Category();
+		c.setName(categoryName);
+		
+		int feeCategoryId=catObj.getFeeCategoryId(c);
 		logger.info("CATEGORY ID: "+feeCategoryId);	
 		
 		int feeCourseId=feeCourseObj.getCourseFeeId(courseId, feeCategoryId);
@@ -66,7 +75,11 @@ public class TestAddPayment
 			throw new InvalidInputException("INVALID INPUT");
 		}
 		
-		int semId=semObj.getSemId(yr,semType);
+		Semester s1=new Semester();
+		s1.setaccYear(yr);
+		s1.setsemType(semType);
+		
+		int semId=semObj.getSemId(s1);
 		logger.info("SEM ID:"+semId);
 		
 		PaymentDAOImplementation obj= PaymentDAOImplementation.getInstance();
