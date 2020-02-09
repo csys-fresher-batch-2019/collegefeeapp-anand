@@ -1,4 +1,4 @@
-package sxc.Department;
+package sxc.department;
 
 import java.util.ArrayList;
 

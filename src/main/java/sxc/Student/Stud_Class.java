@@ -1,4 +1,4 @@
-package sxc.Student;
+package sxc.student;
 
 public class Stud_Class {
 

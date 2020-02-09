@@ -1,17 +1,15 @@
-package sxc.Payment;
+package sxc.payment;
 
 import java.util.Scanner;
 
-import sxc.Category.Category;
-import sxc.Category.CategoryDAOImplementation;
-import sxc.Course.CourseDAOImplementation;
-import sxc.FeeCourse.FeeCourseDAOImplementation;
-import sxc.SXCException.InvalidInputException;
-import sxc.SXCException.NotFoundException;
-import sxc.Semester.Semester;
-import sxc.Semester.SemesterDAOImplementation;
-import sxc.Student.Stud_Class;
-import sxc.Student.StudentDAOImplementation;
+import sxc.category.Category;
+import sxc.category.CategoryDAOImplementation;
+import sxc.feeCourse.FeeCourseDAOImplementation;
+import sxc.sxcException.InvalidInputException;
+import sxc.semester.Semester;
+import sxc.semester.SemesterDAOImplementation;
+import sxc.student.Stud_Class;
+import sxc.student.StudentDAOImplementation;
 import sxc.util.Logger;
 
 public class TestAddPayment 
@@ -19,7 +17,6 @@ public class TestAddPayment
 
 	public static void main(String[] args) throws Exception 
 	{
-		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 				
 		CategoryDAOImplementation catObj= CategoryDAOImplementation.getInstance();
@@ -28,14 +25,6 @@ public class TestAddPayment
 		FeeCourseDAOImplementation feeCourseObj=FeeCourseDAOImplementation.getInstance();
 		Logger logger=Logger.getInstance();
 		
-//		String degName=sc.nextLine().toUpperCase();
-//		String deptName=sc.nextLine().toUpperCase();
-//		int deptId=deptObj.getDepartmentId(deptName);
-//		int degId=degObj.getDegreeId(degName);
-//		int courseId=courseObj.getCourseId(degId, deptId);
-//		System.out.println("DEPARTEMENT ID: "+deptId);
-//		System.out.println("DEGREE ID: "+degId);
-
 		String regno=sc.nextLine().toUpperCase();
 
 		Stud_Class s=new Stud_Class();

@@ -1,4 +1,4 @@
-package sxc.Course;
+package sxc.course;
 
 public class Course {
 

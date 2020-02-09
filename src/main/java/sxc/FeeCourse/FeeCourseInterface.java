@@ -1,4 +1,4 @@
-package sxc.FeeCourse;
+package sxc.feeCourse;
 
 public interface FeeCourseInterface {
 	

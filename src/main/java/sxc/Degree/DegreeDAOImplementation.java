@@ -1,8 +1,8 @@
-package sxc.Degree;
+package sxc.degree;
 
 import java.sql.*;
 
-import sxc.SXCException.NotFoundException;
+import sxc.sxcException.NotFoundException;
 import sxc.util.*;
 
 import java.util.ArrayList;

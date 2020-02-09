@@ -1,4 +1,4 @@
-package sxc.Payment;
+package sxc.payment;
 
 import java.util.ArrayList;
 import java.util.List;

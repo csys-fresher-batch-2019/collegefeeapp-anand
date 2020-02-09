@@ -1,4 +1,4 @@
-package sxc.Department;
+package sxc.department;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,23 +11,22 @@ import sxc.util.Logger;
 public class TestGetAllDepartments {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		
-		Logger logger=Logger.getInstance();
-		DeptDAOImplementation obj=DeptDAOImplementation.getInstance();
-		ArrayList<String> listDept=obj.listAllDepartments();
+
+		Logger logger = Logger.getInstance();
+		DeptDAOImplementation obj = DeptDAOImplementation.getInstance();
+		ArrayList<String> listDept = obj.listAllDepartments();
 		logger.info(listDept.toString());
-		
-		String fileContent="";
-		
+
+		String fileContent = "";
+
 		for (String department : listDept) {
-			String line="DEPT NAME: "+department+"\n";
-			fileContent=fileContent+line;
+			String line = "DEPT NAME: " + department + "\n";
+			fileContent = fileContent + line;
 		}
-		
-		Path path=Paths.get("getalldepartments.txt");
+
+		Path path = Paths.get("getalldepartments.txt");
 		Files.write(path, fileContent.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-		
+
 	}
 
 }

@@ -1,4 +1,4 @@
-package sxc.Course;
+package sxc.course;
 
 import java.util.ArrayList;
 

@@ -1,11 +1,11 @@
-package sxc.Student;
+package sxc.student;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import sxc.Course.CourseDAOImplementation;
-import sxc.Degree.DegreeDAOImplementation;
-import sxc.Department.DeptDAOImplementation;
+import sxc.course.CourseDAOImplementation;
+import sxc.degree.DegreeDAOImplementation;
+import sxc.department.DeptDAOImplementation;
 import sxc.util.Logger;
 
 public class TestGetActiveStudentsByCourse {

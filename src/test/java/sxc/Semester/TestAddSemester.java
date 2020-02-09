@@ -1,6 +1,6 @@
-package sxc.Semester;
+package sxc.semester;
 
-import sxc.Semester.SemesterDAOImplementation;
+import sxc.semester.SemesterDAOImplementation;
 
 public class TestAddSemester {
 

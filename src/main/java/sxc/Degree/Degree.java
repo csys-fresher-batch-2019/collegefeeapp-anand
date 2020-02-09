@@ -1,4 +1,4 @@
-package sxc.Degree;
+package sxc.degree;
 
 public class Degree {
 

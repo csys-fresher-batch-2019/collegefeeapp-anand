@@ -1,4 +1,4 @@
-package sxc.Semester;
+package sxc.semester;
 
 import sxc.util.Logger;
 

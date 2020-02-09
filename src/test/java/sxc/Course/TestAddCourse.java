@@ -1,9 +1,9 @@
-package sxc.Course;
+package sxc.course;
 
 import java.util.Scanner;
 
-import sxc.Degree.DegreeDAOImplementation;
-import sxc.Department.DeptDAOImplementation;
+import sxc.degree.DegreeDAOImplementation;
+import sxc.department.DeptDAOImplementation;
 import sxc.util.Logger;
 
 public class TestAddCourse {

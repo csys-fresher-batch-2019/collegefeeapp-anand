@@ -1,4 +1,4 @@
-package sxc.Degree;
+package sxc.degree;
 
 import java.util.ArrayList;
 

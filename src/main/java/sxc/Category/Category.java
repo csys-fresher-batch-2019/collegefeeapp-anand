@@ -1,4 +1,4 @@
-package sxc.Category;
+package sxc.category;
 
 public class Category {
 

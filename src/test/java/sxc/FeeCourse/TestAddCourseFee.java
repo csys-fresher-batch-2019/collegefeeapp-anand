@@ -1,18 +1,17 @@
-package sxc.FeeCourse;
+package sxc.feeCourse;
 
 import java.util.Scanner;
 
-import sxc.Category.Category;
-import sxc.Category.CategoryDAOImplementation;
-import sxc.Course.CourseDAOImplementation;
-import sxc.Degree.DegreeDAOImplementation;
-import sxc.Department.DeptDAOImplementation;
+import sxc.category.Category;
+import sxc.category.CategoryDAOImplementation;
+import sxc.course.CourseDAOImplementation;
+import sxc.degree.DegreeDAOImplementation;
+import sxc.department.DeptDAOImplementation;
 import sxc.util.Logger;
 
 public class TestAddCourseFee {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
 
 		DeptDAOImplementation objDept = DeptDAOImplementation.getInstance();
 		DegreeDAOImplementation objDeg = DegreeDAOImplementation.getInstance();

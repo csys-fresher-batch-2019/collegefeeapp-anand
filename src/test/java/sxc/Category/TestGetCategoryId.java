@@ -1,4 +1,4 @@
-package sxc.Category;
+package sxc.category;
 
 import java.util.Scanner;
 

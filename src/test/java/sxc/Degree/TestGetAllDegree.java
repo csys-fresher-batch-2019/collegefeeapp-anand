@@ -1,4 +1,4 @@
-package sxc.Degree;
+package sxc.degree;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,6 @@ import sxc.util.Logger;
 public class TestGetAllDegree {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
 		Logger logger=Logger.getInstance();
 		
 		DegreeDAOImplementation obj= DegreeDAOImplementation.getInstance();

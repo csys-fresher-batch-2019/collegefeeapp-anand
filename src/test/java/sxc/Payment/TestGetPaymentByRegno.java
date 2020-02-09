@@ -1,4 +1,4 @@
-package sxc.Payment;
+package sxc.payment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import sxc.util.Logger;
 public class TestGetPaymentByRegno {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 
 		Logger logger = Logger.getInstance();

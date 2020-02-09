@@ -1,4 +1,4 @@
-package sxc.SXCException;
+package sxc.sxcException;
 
 public class InvalidInputException extends Exception {
 

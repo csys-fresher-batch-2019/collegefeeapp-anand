@@ -1,10 +1,10 @@
-package sxc.Category;
+package sxc.category;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import sxc.SXCException.NotFoundException;
+import sxc.sxcException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
 

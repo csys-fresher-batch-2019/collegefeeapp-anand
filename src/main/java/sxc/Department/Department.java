@@ -1,4 +1,4 @@
-package sxc.Department;
+package sxc.department;
 
 public class Department {
 	private int deptId;

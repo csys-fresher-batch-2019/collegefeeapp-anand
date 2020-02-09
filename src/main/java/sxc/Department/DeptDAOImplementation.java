@@ -1,11 +1,11 @@
-package sxc.Department;
+package sxc.department;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import sxc.SXCException.NotFoundException;
+import sxc.sxcException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
 

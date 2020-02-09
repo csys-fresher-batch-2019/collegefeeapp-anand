@@ -1,4 +1,4 @@
-package sxc.SXCException;
+package sxc.sxcException;
 
 public class NotFoundException extends Exception {
 
