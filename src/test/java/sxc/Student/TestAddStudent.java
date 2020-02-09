@@ -13,7 +13,7 @@ public class TestAddStudent {
 
 		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
 
-		Stud_Class s = new Stud_Class();
+		Stud_Class s = Stud_Class.getInstance();
 
 		s.setCourse_id(courseId);
 		s.setName(name);

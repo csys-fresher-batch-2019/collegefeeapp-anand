@@ -30,11 +30,11 @@ public class MailUtil {
 			request.setEndpoint("mail/send");
 			request.setBody(mail.build());
 			Response response = sg.api(request);
-			System.out.println(response.getStatusCode());
-			System.out.println(response.getBody());
-			System.out.println(response.getHeaders());
+			Logger.getInstance().info(response.getStatusCode());
+			Logger.getInstance().info(response.getBody());
+			Logger.getInstance().info(response.getHeaders());
 		} catch (IOException ex) {
-			System.out.println(ex);
+			Logger.getInstance().error(ex);
 		}
 	}
 

@@ -12,7 +12,7 @@ public class TestGetSemesterId {
 		int yr = 2018;
 		int semType = 0;
 
-		Semester s = new Semester();
+		Semester s =Semester.getInstance();
 		s.setaccYear(yr);
 		s.setsemType(semType);
 

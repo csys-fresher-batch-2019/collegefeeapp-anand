@@ -2,6 +2,8 @@ package sxc.course;
 
 import java.util.ArrayList;
 
+import sxc.sxcException.DbException;
+
 public interface CourseInterface {
 	
 	void addCourse(int deptid,int degid) throws Exception;

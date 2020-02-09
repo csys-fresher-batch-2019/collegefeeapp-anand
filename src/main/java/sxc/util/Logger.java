@@ -4,8 +4,7 @@ public class Logger {
 
 	public static Logger getInstance()
 	{
-	Logger logger=new Logger();	
-	return logger;
+	return new Logger();
 	}
 	
 	public void debug(Object message)

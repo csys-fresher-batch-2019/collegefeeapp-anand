@@ -2,6 +2,10 @@ package sxc.student;
 
 public class Stud_Class {
 
+	public static Stud_Class getInstance() {
+		return new Stud_Class();
+	}
+
 	public String getName() {
 		return name;
 	}

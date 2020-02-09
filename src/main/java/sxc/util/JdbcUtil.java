@@ -14,7 +14,7 @@ public class JdbcUtil {
 			pst1.setObject(i, param);
 			i++;
 		}
-		int rows = pst1.executeUpdate();
-		return rows;
+
+		return pst1.executeUpdate();
 	}
 }

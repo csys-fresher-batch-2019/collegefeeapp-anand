@@ -2,6 +2,11 @@ package sxc.degree;
 
 public class Degree {
 
+	public static Degree getInstance()
+	{
+		return new Degree();
+	}
+	
 	private int id;
 	private String name;
 

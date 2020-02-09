@@ -5,11 +5,8 @@ import sxc.semester.SemesterDAOImplementation;
 public class TestAddSemester {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-
 		SemesterDAOImplementation obj = SemesterDAOImplementation.getInstance();
-
-		Semester s = new Semester();
+		Semester s = Semester.getInstance();
 		s.setaccYear(2002);
 		s.setsemType(1);
 

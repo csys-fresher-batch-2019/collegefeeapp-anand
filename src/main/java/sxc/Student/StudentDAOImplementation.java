@@ -43,7 +43,7 @@ public class StudentDAOImplementation implements Student {
 		if (row > 0) {
 			logger.info("Student Name Updated");
 		} else {
-			throw new NotFoundException("No Student record found");
+			throw new NotFoundException("No matching data");
 		}
 		stmt.close();
 		con.close();
@@ -58,7 +58,7 @@ public class StudentDAOImplementation implements Student {
 		if (row > 0) {
 			logger.info("Student Deleted");
 		} else {
-			throw new NotFoundException("No Student record found");
+			throw new NotFoundException("No matching data");
 		}
 		stmt.close();
 		con.close();
@@ -71,10 +71,10 @@ public class StudentDAOImplementation implements Student {
 		String sql = "select * from student where stud_active=1";
 		ResultSet rs = stmt.executeQuery(sql);
 
-		ArrayList<Stud_Class> list = new ArrayList<Stud_Class>();
+		ArrayList<Stud_Class> list = new ArrayList<>();
 
 		while (rs.next()) {
-			Stud_Class s = new Stud_Class();
+			Stud_Class s = Stud_Class.getInstance();
 			s.setRegno(rs.getString("std_id"));
 			s.setName(rs.getString("std_name"));
 			s.setCourse_id(rs.getInt("course_id"));
@@ -95,10 +95,10 @@ public class StudentDAOImplementation implements Student {
 		String sql = "select * from student where course_id=" + courseId + " and stud_active=1";
 		ResultSet rs = stmt.executeQuery(sql);
 
-		ArrayList<Stud_Class> list = new ArrayList<Stud_Class>();
+		ArrayList<Stud_Class> list = new ArrayList<>();
 
 		while (rs.next()) {
-			Stud_Class s = new Stud_Class();
+			Stud_Class s = Stud_Class.getInstance();
 			s.setRegno(rs.getString("std_id"));
 			s.setName(rs.getString("std_name"));
 			s.setCourse_id(rs.getInt("course_id"));
@@ -127,7 +127,7 @@ public class StudentDAOImplementation implements Student {
 		if (rs.next()) {
 			courseId = rs.getInt("course_id");
 		} else {
-			throw new NotFoundException("No Student record found");
+			throw new NotFoundException("No matching data");
 		}
 
 		return courseId;

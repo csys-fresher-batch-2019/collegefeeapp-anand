@@ -14,7 +14,7 @@ public class TestGetCourseIdByRegno {
 
 		StudentDAOImplementation stdObj = StudentDAOImplementation.getInstance();
 
-		Stud_Class s = new Stud_Class();
+		Stud_Class s = Stud_Class.getInstance();
 		s.setRegno(regno);
 
 		int courseId = stdObj.getCourseIdByRegno(s);

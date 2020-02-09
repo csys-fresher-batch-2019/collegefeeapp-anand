@@ -33,7 +33,7 @@ public class TestAddCourseFee {
 		logger.info("COURSE ID: " + courseId);
 
 		String categoryName = sc.nextLine().toUpperCase();
-		Category c = new Category();
+		Category c = Category.getInstance();
 		c.setName(categoryName);
 
 		int categoryId = objCategory.getFeeCategoryId(c);

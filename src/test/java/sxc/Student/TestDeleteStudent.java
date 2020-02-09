@@ -9,7 +9,7 @@ public class TestDeleteStudent {
 		String regno = sc.next().toUpperCase();
 
 		StudentDAOImplementation obj = StudentDAOImplementation.getInstance();
-		Stud_Class s = new Stud_Class();
+		Stud_Class s = Stud_Class.getInstance();
 
 		s.setRegno(regno);
 		obj.deleteStudent(s);

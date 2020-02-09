@@ -120,7 +120,7 @@ public class CourseDAOImplementation implements CourseInterface {
 		ResultSet rs = stmt.executeQuery(sql);
 
 		while (rs.next()) {
-			Course c = new Course();
+			Course c = Course.getInstance();
 			c.setCourseId(rs.getInt("course_id"));
 			c.setDegreeId(rs.getInt("deg_id"));
 			c.setDegreeId(rs.getInt("dept_id"));

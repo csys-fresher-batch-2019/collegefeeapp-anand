@@ -13,7 +13,7 @@ public class TestUpdateStudent {
 		String regno = (sc.nextLine()).toUpperCase();
 		String name = (sc.nextLine()).toUpperCase();
 
-		Stud_Class s = new Stud_Class();
+		Stud_Class s = Stud_Class.getInstance();
 		s.setRegno(regno);
 		s.setName(name);
 

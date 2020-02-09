@@ -1,11 +1,9 @@
 package sxc.degree;
 
 import java.sql.*;
-
+import java.util.ArrayList;
 import sxc.sxcException.NotFoundException;
 import sxc.util.*;
-
-import java.util.ArrayList;
 
 public class DegreeDAOImplementation implements DegreeInterface {
 
@@ -97,7 +95,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next()) {
 
-			Degree d = new Degree();
+			Degree d = Degree.getInstance();
 			d.setName(rs.getString("deg_name"));
 
 			list.add(d.getName());

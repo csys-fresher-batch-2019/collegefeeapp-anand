@@ -73,7 +73,7 @@ public class TestAddPayment
 		
 		PaymentDAOImplementation obj= PaymentDAOImplementation.getInstance();
 	
-		PaymentDetail p=new PaymentDetail();
+		PaymentDetail p=PaymentDetail.getInstance();
 		
 		p.setRegno(regno);
 		p.setFeeCourseId(feeCourseId);

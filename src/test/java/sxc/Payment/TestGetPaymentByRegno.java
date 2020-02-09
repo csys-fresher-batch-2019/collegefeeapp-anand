@@ -16,7 +16,7 @@ public class TestGetPaymentByRegno {
 		String regno = sc.nextLine().toUpperCase();
 
 		PaymentDAOImplementation obj = PaymentDAOImplementation.getInstance();
-		List<PaymentDetail> list = new ArrayList<PaymentDetail>();
+		List<PaymentDetail> list = new ArrayList<>();
 		list = obj.listbyregno(regno);
 		logger.info(list.toString());
 	}
