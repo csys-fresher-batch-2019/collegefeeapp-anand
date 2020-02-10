@@ -80,7 +80,7 @@ public class DeptDAOImplementation implements DeptInterface {
 
 		ArrayList<String> list = new ArrayList<>();
 
-		String sql = "select * from department";
+		String sql = "select * from department order by dept_name";
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next()) {
 			String name = rs.getString("dept_name");

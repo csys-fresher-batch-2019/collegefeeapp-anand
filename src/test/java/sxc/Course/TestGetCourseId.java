@@ -18,8 +18,8 @@ public class TestGetCourseId {
 		DegreeDAOImplementation obj2 =  DegreeDAOImplementation.getInstance();
 		CourseDAOImplementation obj3 = CourseDAOImplementation.getInstance();
 
-		String deptName = sc.next();
-		String degName = sc.next();
+		String deptName = sc.next().toUpperCase();
+		String degName = sc.next().toUpperCase();
 
 		int deptId = obj1.getDepartmentId(deptName);
 		int degId = obj2.getDegreeId(degName);

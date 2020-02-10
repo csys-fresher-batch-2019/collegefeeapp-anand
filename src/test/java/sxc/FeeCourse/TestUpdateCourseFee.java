@@ -17,8 +17,8 @@ public class TestUpdateCourseFee {
 
 		Logger logger = Logger.getInstance();
 
-		String deptName = sc.nextLine().toUpperCase();
 		String degName = sc.nextLine().toUpperCase();
+		String deptName = sc.nextLine().toUpperCase();
 
 		DeptDAOImplementation deptObj = DeptDAOImplementation.getInstance();
 		DegreeDAOImplementation degObj = DegreeDAOImplementation.getInstance();
@@ -38,7 +38,6 @@ public class TestUpdateCourseFee {
 
 		Category c = Category.getInstance();
 		c.setName(categoryName);
-
 		int feeCategoryId = catObj.getFeeCategoryId(c);
 		logger.info("FEE CATEGORY ID: " + feeCategoryId);
 

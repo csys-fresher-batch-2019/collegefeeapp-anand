@@ -21,13 +21,13 @@ public class TestAddCourseFee {
 		Scanner sc = new Scanner(System.in);
 		Logger logger = Logger.getInstance();
 
+		String degName = sc.nextLine().toUpperCase();
+		int degId = objDeg.getDegreeId(degName);
+		logger.info("DEGREE ID: " + degId);
+
 		String deptName = sc.nextLine().toUpperCase();
 		int deptId = objDept.getDepartmentId(deptName);
 		logger.info("DEPT ID: " + deptId);
-
-		String degName = sc.nextLine().toUpperCase();
-		int degId = objDeg.getDegreeId(degName);
-		logger.info("DEGREE NAME: " + degId);
 
 		int courseId = objCourse.getCourseId(degId, deptId);
 		logger.info("COURSE ID: " + courseId);
@@ -35,7 +35,6 @@ public class TestAddCourseFee {
 		String categoryName = sc.nextLine().toUpperCase();
 		Category c = Category.getInstance();
 		c.setName(categoryName);
-
 		int categoryId = objCategory.getFeeCategoryId(c);
 		logger.info("FEE CATEGORY ID: " + categoryId);
 

@@ -89,7 +89,7 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 		ArrayList<String> list = new ArrayList<>();
 
-		String sql = "select * from degree";
+		String sql = "select * from degree order by deg_name";
 		logger.info(sql);
 
 		ResultSet rs = stmt.executeQuery(sql);

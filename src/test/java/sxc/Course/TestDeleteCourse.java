@@ -9,6 +9,7 @@ public class TestDeleteCourse {
 		CourseDAOImplementation obj= CourseDAOImplementation.getInstance();
 		Scanner sc=new Scanner(System.in);
 		int courseId=sc.nextInt();
+		obj.getCourseName(courseId);
 		obj.deleteCourse(courseId);
 		
 	}

@@ -116,14 +116,14 @@ public class CourseDAOImplementation implements CourseInterface {
 		Connection con = TestConnect.getConnection();
 		Statement stmt = con.createStatement();
 
-		String sql = "select * from course";
+		String sql = "select * from course order by course_id";
 		ResultSet rs = stmt.executeQuery(sql);
 
 		while (rs.next()) {
 			Course c = Course.getInstance();
 			c.setCourseId(rs.getInt("course_id"));
 			c.setDegreeId(rs.getInt("deg_id"));
-			c.setDegreeId(rs.getInt("dept_id"));
+			c.setDeptId(rs.getInt("dept_id"));
 			c.setStatus(rs.getInt("course_active"));
 
 			list.add(c);
