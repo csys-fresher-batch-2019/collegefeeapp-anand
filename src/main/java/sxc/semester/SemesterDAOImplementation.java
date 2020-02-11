@@ -40,18 +40,17 @@ public class SemesterDAOImplementation implements SemesterInterface {
 				+ s.getsemType() + " ";
 
 		logger.info(sql);
-
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
-
 		int semId = 0;
 
-		ResultSet rs = stmt.executeQuery(sql);
-		if (rs.next()) {
-			semId = rs.getInt("sem_id");
-		} else {
-			throw new NotFoundException("INVALID SEMESTER");
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				semId = rs.getInt("sem_id");
+			} else {
+				throw new NotFoundException("INVALID SEMESTER");
+			}
+			return semId;
 		}
-		return semId;
 	}
 }

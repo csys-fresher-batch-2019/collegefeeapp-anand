@@ -18,50 +18,47 @@ public class CategoryDAOImplementation implements CategoryInterface {
 
 	public void addFeeCategory(Category c) throws Exception {
 
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
+					+ c.getName() + "')";
+			stmt.executeUpdate(sql);
 
-		String sql = "insert into fee_category(fee_category_id,fee_category_name) values(fee_category_seq.nextval,'"
-				+ c.getName() + "')";
-		stmt.executeUpdate(sql);
-
-		logger.info(sql);
-		logger.info("Category added");
+			logger.info(sql);
+			logger.info("Category added");
+		}
 	}
 
 	public int getFeeCategoryId(Category c) throws Exception {
 		int id = 0;
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			String sql = "select fee_category_id from fee_category where fee_category_name='" + c.getName() + "'";
+			logger.info(sql);
 
-		String sql = "select fee_category_id from fee_category where fee_category_name='" + c.getName() + "'";
-		logger.info(sql);
+			ResultSet rs = stmt.executeQuery(sql);
 
-		ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				id = rs.getInt("fee_category_id");
+			}
 
-		if (rs.next()) {
-			id = rs.getInt("fee_category_id");
+			return id;
 		}
-
-		return id;
 	}
 
 	public String getFeeCategoryName(Category c) throws Exception {
 		String name = null;
 
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			String sql = "select fee_category_name from fee_category where fee_category_id=" + c.getId() + "";
+			logger.info(sql);
 
-		String sql = "select fee_category_name from fee_category where fee_category_id=" + c.getId() + "";
-		logger.info(sql);
-
-		ResultSet rs = stmt.executeQuery(sql);
-		if (rs.next()) {
-			name = rs.getString("fee_category_name");
-		} else {
-			throw new NotFoundException("Category doesnot exist");
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				name = rs.getString("fee_category_name");
+			} else {
+				throw new NotFoundException("Category doesnot exist");
+			}
+			return name;
 		}
-		return name;
 	}
 
 }

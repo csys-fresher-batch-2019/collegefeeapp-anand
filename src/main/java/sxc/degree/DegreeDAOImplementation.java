@@ -13,50 +13,45 @@ public class DegreeDAOImplementation implements DegreeInterface {
 
 	public void addDegree(String name, int durationInYears) throws Exception {
 
-		Connection con = TestConnect.getConnection();
+		try (Connection con = TestConnect.getConnection();
 
-		Statement stmt = con.createStatement();
+				Statement stmt = con.createStatement();) {
+			Logger logger = Logger.getInstance();
 
-		Logger logger = Logger.getInstance();
+			String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name.toUpperCase()
+					+ "'," + durationInYears + ")";
 
-		String sql = "insert into degree(deg_id,deg_name,no_of_yr) values(degree_seq.nextval,'" + name.toUpperCase()
-				+ "'," + durationInYears + ")";
+			logger.info(sql);
+			stmt.executeUpdate(sql);
 
-		logger.info(sql);
-		stmt.executeUpdate(sql);
+			logger.info("Degree Inserted");
 
-		logger.info("Degree Inserted");
-
-		stmt.close();
-		con.close();
-
+		}
 	}
 
 	public String getDegreeName(int degId) throws Exception {
 
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			Logger logger = Logger.getInstance();
 
-		Logger logger = Logger.getInstance();
+			String degName = null;
+			ResultSet rs2;
 
-		String degName = null;
-		ResultSet rs2;
+			String sql2 = "select deg_name from degree where deg_id=" + degId + "";
+			logger.info(sql2);
+			rs2 = stmt.executeQuery(sql2);
 
-		String sql2 = "select deg_name from degree where deg_id=" + degId + "";
-		logger.info(sql2);
-		rs2 = stmt.executeQuery(sql2);
+			if (rs2.next()) {
+				degName = rs2.getString("deg_name");
+			} else {
+				throw new NotFoundException("Degree doesnot Exist");
+			}
 
-		if (rs2.next()) {
-			degName = rs2.getString("deg_name");
-		} else {
-			throw new NotFoundException("Degree doesnot Exist");
+			stmt.close();
+			con.close();
+
+			return degName;
 		}
-
-		stmt.close();
-		con.close();
-
-		return degName;
-
 	}
 
 	public int getDegreeId(String degName) throws Exception {
@@ -76,34 +71,28 @@ public class DegreeDAOImplementation implements DegreeInterface {
 			throw new NotFoundException("Degree doesnot Exist");
 		}
 
-		stmt.close();
-		con.close();
-
 		return degId;
 	}
 
 	public ArrayList<String> getAllDegree() throws Exception {
-		Connection con = TestConnect.getConnection();
-		Statement stmt = con.createStatement();
-		Logger logger = Logger.getInstance();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			Logger logger = Logger.getInstance();
 
-		ArrayList<String> list = new ArrayList<>();
+			ArrayList<String> list = new ArrayList<>();
 
-		String sql = "select * from degree order by deg_name";
+			String sql = "select * from degree order by deg_name";
 
-		ResultSet rs = stmt.executeQuery(sql);
-		while (rs.next()) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
 
-			Degree d = Degree.getInstance();
-			d.setName(rs.getString("deg_name"));
+				Degree d = Degree.getInstance();
+				d.setName(rs.getString("deg_name"));
 
-			list.add(d.getName());
+				list.add(d.getName());
 
+			}
+			return list;
 		}
-		stmt.close();
-		con.close();
-
-		return list;
 	}
 
 }

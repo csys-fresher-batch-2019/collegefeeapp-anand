@@ -48,28 +48,28 @@ public class MailUtil {
 	}
 
 	private static Multipart messageBody(PaymentDetail p) throws MessagingException {
-		{
-			BodyPart messageBodyPart2 = new MimeBodyPart();
-			messageBodyPart2.setText("STUDENT REGNO: " + p.getRegno()+"\n");
-			BodyPart messageBodyPart3 = new MimeBodyPart();
-			messageBodyPart3.setText("FEE PAID: " + p.getAmount()+"\n");
-			BodyPart messageBodyPart4 = new MimeBodyPart();
-			messageBodyPart4.setText("Regards, \nADMIN \nSt.Xavier's College");
-			/*
-			 * String filename = "SendAttachment.java"; FileDataSource source = new
-			 * FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");
-			 * messageBodyPart2.setDataHandler(new DataHandler(source));
-			 * messageBodyPart2.setFileName(filename);
-			 */
 
-			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(messageBodyPart2);
-			multipart.addBodyPart(messageBodyPart3);
-			multipart.addBodyPart(messageBodyPart4);
-			return multipart;
+		BodyPart messageBodyPart2 = new MimeBodyPart();
+		messageBodyPart2.setText("STUDENT REGNO: " + p.getRegno() + "\n");
+		BodyPart messageBodyPart3 = new MimeBodyPart();
+		messageBodyPart3.setText("FEE PAID: " + p.getAmount() + "\n");
+		BodyPart messageBodyPart4 = new MimeBodyPart();
+		messageBodyPart4.setText("Regards, \nADMIN \nSt.Xavier's College");
+		/*
+		 * String filename = "SendAttachment.java"; FileDataSource source = new
+		 * FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");
+		 * messageBodyPart2.setDataHandler(new DataHandler(source));
+		 * messageBodyPart2.setFileName(filename);
+		 */
 
-		}
+		Multipart multipart = new MimeMultipart();
+		multipart.addBodyPart(messageBodyPart2);
+		multipart.addBodyPart(messageBodyPart3);
+		multipart.addBodyPart(messageBodyPart4);
+		return multipart;
+
 	}
+
 	// public static void main(String[] args) throws IOException {
 	// MailUtil.send("ak1996ak1996ak1996@gmail.com", "qwerty@123456",
 	// "anandkumar2910@gmail.com", "Payment", "Hello!");
