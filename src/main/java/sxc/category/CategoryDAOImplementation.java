@@ -34,9 +34,7 @@ public class CategoryDAOImplementation implements CategoryInterface {
 			String sql = "select fee_category_id from fee_category where fee_category_name='" + c.getName() + "'";
 			logger.info(sql);
 
-			ResultSet rs = stmt.executeQuery(sql);
-
-			if (rs.next()) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 				id = rs.getInt("fee_category_id");
 			}
 
@@ -51,10 +49,9 @@ public class CategoryDAOImplementation implements CategoryInterface {
 			String sql = "select fee_category_name from fee_category where fee_category_id=" + c.getId() + "";
 			logger.info(sql);
 
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 				name = rs.getString("fee_category_name");
-			} else {
+			} catch (Exception e) {
 				throw new NotFoundException("Category doesnot exist");
 			}
 			return name;
