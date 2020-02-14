@@ -94,7 +94,6 @@ public class StudentDAOImplementation implements Student {
 
 					list.add(s);
 				}
-
 				return list;
 			}
 		}
@@ -108,12 +107,11 @@ public class StudentDAOImplementation implements Student {
 			String sql = "select course_id from student where std_id='" + s.getRegno() + "'";
 
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-
 				if (rs.next()) {
 					courseId = rs.getInt("course_id");
-				} else {
-					throw new NotFoundException("No matching data");
 				}
+			} catch (Exception e) {
+				throw new NotFoundException("No matching data");
 			}
 			return courseId;
 		}

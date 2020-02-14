@@ -35,7 +35,9 @@ public class DeptDAOImplementation implements DeptInterface {
 			String sql1 = "select dept_id from department where dept_name='" + departmentName + "'";
 			logger.info(sql1);
 			try (ResultSet rs1 = stmt.executeQuery(sql1);) {
-				deptId = rs1.getInt("dept_id");
+				if (rs1.next()) {
+					deptId = rs1.getInt("dept_id");
+				}
 			} catch (Exception e) {
 				throw new NotFoundException("Department does not Exist");
 			}
@@ -51,7 +53,9 @@ public class DeptDAOImplementation implements DeptInterface {
 			logger.info(sql);
 
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-				deptName = rs.getString("dept_name");
+				if (rs.next()) {
+					deptName = rs.getString("dept_name");
+				}
 			} catch (Exception e) {
 				throw new NotFoundException("Department Doesnot exist");
 			}

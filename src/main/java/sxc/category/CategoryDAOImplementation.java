@@ -35,9 +35,12 @@ public class CategoryDAOImplementation implements CategoryInterface {
 			logger.info(sql);
 
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-				id = rs.getInt("fee_category_id");
+				if (rs.next()) {
+					id = rs.getInt("fee_category_id");
+				}
+			} catch (Exception e) {
+				throw new NotFoundException("NOT FOUND");
 			}
-
 			return id;
 		}
 	}
@@ -57,5 +60,4 @@ public class CategoryDAOImplementation implements CategoryInterface {
 			return name;
 		}
 	}
-
 }

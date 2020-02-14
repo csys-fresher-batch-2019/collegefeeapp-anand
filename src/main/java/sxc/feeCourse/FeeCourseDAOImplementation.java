@@ -52,7 +52,9 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 			logger.info(sql);
 
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-				courseFeeId = rs.getInt("course_fee_id");
+				if (rs.next()) {
+					courseFeeId = rs.getInt("course_fee_id");
+				}
 			} catch (Exception e) {
 				throw new NotFoundException("Course Fee Not Found");
 			}
@@ -68,7 +70,9 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 
 			String sql = "select amount from course_fee where course_fee_id=" + feeCourseId + "";
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-				feeCourseAmount = rs.getInt("amount");
+				if (rs.next()) {
+					feeCourseAmount = rs.getInt("amount");
+				}
 			} catch (Exception e) {
 				throw new InvalidInputException("Invalid");
 			}

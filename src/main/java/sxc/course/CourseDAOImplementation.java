@@ -35,7 +35,9 @@ public class CourseDAOImplementation implements CourseInterface {
 			int result = 0;
 			String sql = "select course_id from course where deg_id= " + degId + " and dept_id=" + deptId + "";
 			try (ResultSet rs = stmt.executeQuery(sql);) {
-				result = rs.getInt("course_id");
+				if (rs.next()) {
+					result = rs.getInt("course_id");
+				}
 			} catch (Exception e) {
 				throw new NotFoundException("Course Does not Exist");
 			}
@@ -54,14 +56,19 @@ public class CourseDAOImplementation implements CourseInterface {
 					+ courseId + ")";
 			// logger.info(sql1);
 			try (ResultSet rs1 = stmt.executeQuery(sql1);) {
-				deptName = rs1.getString("dept_name");
+				if (rs1.next()) {
+					deptName = rs1.getString("dept_name");
+				}
 			}
 
 			String sql2 = "select deg_name from degree where deg_id=(select deg_id from course where course_id="
 					+ courseId + ")";
 			logger.info(sql2);
 			try (ResultSet rs2 = stmt.executeQuery(sql2);) {
-				degreeName = rs2.getString("deg_name");
+
+				if (rs2.next()) {
+					degreeName = rs2.getString("deg_name");
+				}
 			}
 
 			if (degreeName.equals("") || deptName.equals("")) {
