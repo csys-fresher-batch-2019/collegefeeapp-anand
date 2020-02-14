@@ -17,20 +17,15 @@ public class SemesterDAOImplementation implements SemesterInterface {
 	public void addSemester(Semester s) throws Exception {
 
 		Logger logger = Logger.getInstance();
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+			String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval,"
+					+ s.getsemType() + "," + s.getaccYear() + ")";
 
-		String sql = "insert into semester(sem_id,sem_type,acc_yr_begin) values(semester_seq.nextval," + s.getsemType()
-				+ "," + s.getaccYear() + ")";
+			stmt.executeUpdate(sql);
 
-		Connection con = TestConnect.getConnection();
+			logger.info("Semester Generated");
 
-		Statement stmt = con.createStatement();
-
-		stmt.executeUpdate(sql);
-
-		logger.info("Semester Generated");
-
-		con.close();
-
+		}
 	}
 
 	public int getSemId(Semester s) throws Exception {
@@ -44,10 +39,9 @@ public class SemesterDAOImplementation implements SemesterInterface {
 
 		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
 
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 				semId = rs.getInt("sem_id");
-			} else {
+			} catch (Exception e) {
 				throw new NotFoundException("INVALID SEMESTER");
 			}
 			return semId;

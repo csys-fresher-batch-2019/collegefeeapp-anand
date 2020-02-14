@@ -60,9 +60,7 @@ public class CourseDAOImplementation implements CourseInterface {
 			String sql2 = "select deg_name from degree where deg_id=(select deg_id from course where course_id="
 					+ courseId + ")";
 			logger.info(sql2);
-			ResultSet rs2 = stmt.executeQuery(sql2);
-
-			if (rs2.next()) {
+			try (ResultSet rs2 = stmt.executeQuery(sql2);) {
 				degreeName = rs2.getString("deg_name");
 			}
 
