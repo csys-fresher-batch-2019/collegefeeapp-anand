@@ -1,8 +1,8 @@
 package sxc.category;
 
-import java.util.Scanner;
-
 import sxc.util.Logger;
+
+import java.util.Scanner;
 
 public class TestGetCategoryId {
 
@@ -18,7 +18,7 @@ public class TestGetCategoryId {
 		CategoryDAOImplementation obj = CategoryDAOImplementation.getInstance();
 		int id = obj.getFeeCategoryId(c);
 		logger.info("Category ID: " + id);
-
+		sc.close();
 	}
 
 }

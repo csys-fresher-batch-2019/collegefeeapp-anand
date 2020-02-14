@@ -2,13 +2,12 @@ package sxc.payment;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.sql.*;
 import sxc.sxcException.DbException;
 import sxc.sxcException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.MailUtil;
 import sxc.util.TestConnect;
-import java.sql.*;
 
 public class PaymentDAOImplementation implements PaymentInterface {
 

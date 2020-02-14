@@ -62,41 +62,41 @@ public class StudentDAOImplementation implements Student {
 	public ArrayList<Stud_Class> getAllActiveStudents() throws Exception {
 		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
 			String sql = "select * from student where stud_active=1";
-			ResultSet rs = stmt.executeQuery(sql);
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+				ArrayList<Stud_Class> list = new ArrayList<>();
 
-			ArrayList<Stud_Class> list = new ArrayList<>();
+				while (rs.next()) {
+					Stud_Class s = Stud_Class.getInstance();
+					s.setRegno(rs.getString("std_id"));
+					s.setName(rs.getString("std_name"));
+					s.setCourse_id(rs.getInt("course_id"));
+					s.setStud_active(rs.getInt("stud_active"));
 
-			while (rs.next()) {
-				Stud_Class s = Stud_Class.getInstance();
-				s.setRegno(rs.getString("std_id"));
-				s.setName(rs.getString("std_name"));
-				s.setCourse_id(rs.getInt("course_id"));
-				s.setStud_active(rs.getInt("stud_active"));
-
-				list.add(s);
+					list.add(s);
+				}
+				return list;
 			}
-			return list;
 		}
 	}
 
 	public ArrayList<Stud_Class> getActiveStudentsByCourse(int courseId) throws Exception {
 		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
 			String sql = "select * from student where course_id=" + courseId + " and stud_active=1";
-			ResultSet rs = stmt.executeQuery(sql);
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+				ArrayList<Stud_Class> list = new ArrayList<>();
 
-			ArrayList<Stud_Class> list = new ArrayList<>();
+				while (rs.next()) {
+					Stud_Class s = Stud_Class.getInstance();
+					s.setRegno(rs.getString("std_id"));
+					s.setName(rs.getString("std_name"));
+					s.setCourse_id(rs.getInt("course_id"));
+					s.setStud_active(rs.getInt("stud_active"));
 
-			while (rs.next()) {
-				Stud_Class s = Stud_Class.getInstance();
-				s.setRegno(rs.getString("std_id"));
-				s.setName(rs.getString("std_name"));
-				s.setCourse_id(rs.getInt("course_id"));
-				s.setStud_active(rs.getInt("stud_active"));
+					list.add(s);
+				}
 
-				list.add(s);
+				return list;
 			}
-
-			return list;
 		}
 	}
 
@@ -107,14 +107,14 @@ public class StudentDAOImplementation implements Student {
 
 			String sql = "select course_id from student where std_id='" + s.getRegno() + "'";
 
-			ResultSet rs = stmt.executeQuery(sql);
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 
-			if (rs.next()) {
-				courseId = rs.getInt("course_id");
-			} else {
-				throw new NotFoundException("No matching data");
+				if (rs.next()) {
+					courseId = rs.getInt("course_id");
+				} else {
+					throw new NotFoundException("No matching data");
+				}
 			}
-
 			return courseId;
 		}
 	}
