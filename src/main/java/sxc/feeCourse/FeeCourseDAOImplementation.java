@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import sxc.sxcException.InvalidInputException;
 import sxc.sxcException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
@@ -50,10 +51,10 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 					+ feeCategoryId + "";
 			logger.info(sql);
 
-			ResultSet rs = stmt.executeQuery(sql);
-
-			if (rs.next()) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 				courseFeeId = rs.getInt("course_fee_id");
+			} catch (Exception e) {
+				throw new NotFoundException("Course Fee Not Found");
 			}
 			return courseFeeId;
 		}
@@ -66,10 +67,10 @@ public class FeeCourseDAOImplementation implements FeeCourseInterface {
 			int feeCourseAmount = 0;
 
 			String sql = "select amount from course_fee where course_fee_id=" + feeCourseId + "";
-			ResultSet rs = stmt.executeQuery(sql);
-
-			if (rs.next()) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
 				feeCourseAmount = rs.getInt("amount");
+			} catch (Exception e) {
+				throw new InvalidInputException("Invalid");
 			}
 			return feeCourseAmount;
 		}
