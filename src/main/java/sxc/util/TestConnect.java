@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+
 public class TestConnect {
 
 	public static Connection getConnection() throws SQLException {
@@ -15,6 +18,18 @@ public class TestConnect {
 			Logger.getInstance().error("Class Not Found");
 		}
 		return con;
+	}
+
+	public static Jdbi getJdbi() {
+		Jdbi jdbi = null;
+		try {
+			Connection connection = TestConnect.getConnection();
+			jdbi = Jdbi.create(connection);
+			jdbi.installPlugin(new SqlObjectPlugin());
+		} catch (SQLException e) {
+			Logger.getInstance().error("Class Not Found");
+		}
+		return jdbi;
 	}
 
 }
