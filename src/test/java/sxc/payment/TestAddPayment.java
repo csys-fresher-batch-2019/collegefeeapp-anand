@@ -64,7 +64,7 @@ public class TestAddPayment
 			throw new InvalidInputException("INVALID INPUT");
 		}
 		
-		Semester s1=new Semester();
+		Semester s1=Semester.getInstance();
 		s1.setaccYear(yr);
 		s1.setsemType(semType);
 		
@@ -82,6 +82,7 @@ public class TestAddPayment
 		
 		obj.addPayment(p);
 		
+		sc.close();
 	}
 
 }

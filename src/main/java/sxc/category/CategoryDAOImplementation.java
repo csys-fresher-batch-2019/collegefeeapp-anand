@@ -3,7 +3,9 @@ package sxc.category;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import sxc.course.Course;
 import sxc.sxcException.NotFoundException;
 import sxc.util.Logger;
 import sxc.util.TestConnect;
@@ -58,6 +60,26 @@ public class CategoryDAOImplementation implements CategoryInterface {
 				throw new NotFoundException("Category doesnot exist");
 			}
 			return name;
+		}
+	}
+
+	public ArrayList<Category> getAllCategory() throws Exception {
+
+		ArrayList<Category> list = new ArrayList<>();
+
+		try (Connection con = TestConnect.getConnection(); Statement stmt = con.createStatement();) {
+
+			String sql = "select * from fee_category order by fee_category_id";
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+
+				while (rs.next()) {
+					Category c = Category.getInstance();
+					c.setId(rs.getInt("fee_category_id"));
+					c.setName(rs.getString("fee_category_name"));
+					list.add(c);
+				}
+				return list;
+			}
 		}
 	}
 }

@@ -55,6 +55,7 @@ public class MailUtil {
 		messageBodyPart3.setText("FEE PAID: " + p.getAmount() + "\n");
 		BodyPart messageBodyPart4 = new MimeBodyPart();
 		messageBodyPart4.setText("Regards, \nADMIN \nSt.Xavier's College");
+
 		/*
 		 * String filename = "SendAttachment.java"; FileDataSource source = new
 		 * FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");
@@ -70,8 +71,4 @@ public class MailUtil {
 
 	}
 
-	// public static void main(String[] args) throws IOException {
-	// MailUtil.send("ak1996ak1996ak1996@gmail.com", "qwerty@123456",
-	// "anandkumar2910@gmail.com", "Payment", "Hello!");
-	// }
 }

@@ -10,7 +10,7 @@ public class TestConnect {
 		Connection con = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.201:1521:XE", "system", "oracle");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "oracle");
 		} catch (ClassNotFoundException e) {
 			Logger.getInstance().error("Class Not Found");
 		}
